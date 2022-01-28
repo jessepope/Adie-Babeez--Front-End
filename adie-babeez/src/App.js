@@ -1,15 +1,30 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import logo from "./logo.svg";
 import "./App.css";
+import React from 'react';
 import LoginForm from "./components/LoginForm"
+
 
 function App() {
   return (
-    <div className="App">
-      {/* <h1>Adie Babeez</h1> */}
-      <LoginForm/>
+      <Router>
+        <div className="App">
+            <div className="content">
+              <Switch>
+                <Route path="">
+                    <LogInPage />
+                  </Route>
+                  <Route path="">
+                    <SignUpPage />
+                  </Route>
+                  <Route path="">
+                    <HomePage />
+                  </Route>
 
-      
-    </div>
+              </Switch>
+          </div>
+      </div>
+    </Router>
   );
 }
 
