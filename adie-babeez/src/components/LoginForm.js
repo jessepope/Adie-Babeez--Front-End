@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //import axios from "axios";
 import './LoginForm.css';
 
-function LoginForm(){
+function LoginForm(props){
   const [formField, setFormField] = useState({ userInfo: "", password: "" })
 
   const onUserInfoChange = (e) => {
@@ -21,23 +21,39 @@ function LoginForm(){
 
   const onSubmit = (e) => {
     e.preventDefault();
+    /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const userInfo = document.getElementById('userInfo');
     const password = document.getElementById('password');
     /* add conditional logic to check valid data 
     if form.length > 80 , do .... */
+    const validUserInfo = true 
+    const validPassword = true
+    if (formField.userInfo.length ===0 || formField.userInfo.length > 50) {
+      /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
+      userInfo.style.borderColor= 'red'; 
+      validUserInfo= false;
+    }; 
+    if (formField.password.length ===0 || formField.password.length > 50) {
+      /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
+      password.style.borderColor= 'red';
+      validPassword = false; 
+    };
 
-    axios
+    if (validUserInfo === true && validPassword === true) {axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/users/login/verify`, formField)
     .then((response) => {
+      userId = response.data['user_id']
+      updateCurrUser(userId)
       setFormField({
         userInfo: "",
         password: "",
       });
     })  
+    /*possibly adding logic*/
     .catch((err) => {
       console.log(err);
     });  
-  }
+  }};
 
 
 
