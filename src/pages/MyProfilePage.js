@@ -1,0 +1,1 @@
+import './MyProfilePage.css';
