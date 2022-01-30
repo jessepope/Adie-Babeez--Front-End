@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LoginForm.css';
 
+
 function LoginForm(props){
   const [formField, setFormField] = useState({ userInfo: "", password: "" })
   let navigate = useNavigate();
@@ -28,8 +29,8 @@ function LoginForm(props){
     const userInfo = document.getElementById('userInfo');
     const password = document.getElementById('password');
 
-    const validUserInfo = true 
-    const validPassword = true
+    let validUserInfo = true 
+    let validPassword = true
     if (formField.userInfo.length ===0 || formField.userInfo.length > 50) {
       /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
       userInfo.style.borderColor= 'red'; 
@@ -46,13 +47,11 @@ function LoginForm(props){
     .then((response) => {
       // if login is incorrect then stay on page and give an error message
       // if login is correct, redirect to homepage
-      if (response.status != 200) {
+      if (response.status !== 200) {
         // give error messgae, stay on login page
       } else {
-        // userId = response.data['user_id']
-        // console.log('user_id', userId)
-        // props.updateCurrUser(userId)
-        // redirect to homepage
+        // props.updateCurrUser(response.data)
+        navigate(`/feed`);
       }
       setFormField({
         userInfo: "",

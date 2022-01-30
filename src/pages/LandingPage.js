@@ -1,10 +1,13 @@
 import LoginForm from '../components/LoginForm'
 import './LandingPage.css'
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = (props) => {
 
-    const onClick = (e) => {
-        // route user to submit form page
+    let navigate = useNavigate();
+
+    const onSignUpClick = (e) => {
+        navigate(`/signup`);
     }
     return (
 
@@ -13,7 +16,7 @@ const LandingPage = (props) => {
             <h3 className="slogan">Connecting Adie Parents for all their parenting needs</h3>
             <div className='login-form-container'>
                 <LoginForm UpdateCurrUser={props.UpdateCurrUser} />
-                <button id='sign-up-button' onClick={onClick}>Sign Up</button>
+                <button id='sign-up-button' onClick={onSignUpClick}>Sign Up</button>
             </div>
         </div>
     );

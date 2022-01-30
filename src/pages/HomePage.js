@@ -8,5 +8,15 @@ import Feed from '../components/Feed';
 // make post
 // edit post
 // comment
+const HomePage = (props) => {
+
+  return (
+    <div className='homepage'>
+      <NavBar currentUser={props.currentUser} />
+      <Feed currentUser={props.currentUser} />
+    </div>
+  );
+}
+
 
 export default HomePage;
