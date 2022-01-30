@@ -5,6 +5,7 @@ import './SignUpForm.css';
 
 function SignUpForm(props){
   const [formField, setFormField] = useState({ userName: "", email: "", password: "" , pronouns: "", location: "", className: "", campus: "", bio: "" })
+  let navigate = useNavigate();
 
   const onFieldChange = (e) => {
     setFormField({
@@ -15,26 +16,23 @@ function SignUpForm(props){
 
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
-    let navigate = useNavigate();
+    
     /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
-    const userInfo = document.getElementById('userInfo');
+    const userName = document.getElementById('userInfo');
     const password = document.getElementById('password');
     const email = document.getElementById('email');
-    const pronouns = document.getElementById('pronouns');
-    const location = document.getElementById('location');
-    const className = document.getElementById('className');
-    const campus = document.getElementById('campus');
-    const bio = document.getElementById('bio');
+    // const pronouns = document.getElementById('pronouns');
+    // const location = document.getElementById('location');
+    // const className = document.getElementById('className');
+    // const campus = document.getElementById('campus');
+    // const bio = document.getElementById('bio');
 
     const validData = true
 
-    // formField.map((field) => {
-    //   if (field.length === 0 || field.length > 50)
-    //   })
       
     if (formField.userName.length ===0 || formField.userName.length > 50) {
       /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
-      userInfo.style.borderColor= 'red'; 
+      userName.style.borderColor= 'red'; 
       validData= false;
     }; 
     if (formField.password.length ===0 || formField.password.length > 50) {
@@ -44,16 +42,16 @@ function SignUpForm(props){
     };
     if (formField.email.length ===0 || formField.email.length > 50) {
       /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
-      password.style.borderColor= 'red';
+      email.style.borderColor= 'red';
       validData = false; 
     };
 
     if (validData === true) {axios
     .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, formField)
     .then((response) => {
-      userId = response.data['user_id']
+      /*userId = response.data['user_id']
       console.log('user_id', userId)
-      props.updateCurrUser(userId)
+      props.updateCurrUser(userId)*/
       setFormField({
         userInfo: "",
         password: "",
@@ -121,7 +119,7 @@ function SignUpForm(props){
         name="className"
         value= {formField.className}
         placeholder="class name"
-        onChange={onPasswordChange}
+        onChange={onFieldChange}
         ></input>
         <input 
         id="campus"

@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import logo from "./logo.svg";
 import "./App.css";
 import React from 'react';
 import { useState } from 'react';
-import  LandingPage from './pages/LandingPage';
-import  HomePage from './pages/HomePage';
-import  SignUpPage from './pages/SignUpPage';
+import LandingPage from './pages/LandingPage';
+// import  HomePage from './pages/HomePage';
+// import  SignUpPage from './pages/SignUpPage';
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
@@ -16,17 +16,17 @@ function App() {
       <Router>
         <div className="App">
             <div className="content">
-              <Switch>
-                <Route path="/">
+              <Routes>
+                <Route path="">
                     <LandingPage updateCurrUser={updateCurrUser} />
                   </Route>
-                  <Route path="/signup">
+                  {/* <Route path="/signup">
                     <SignUpPage updateCurrUser={updateCurrUser} />
                   </Route>
                   <Route path="/feed">
                     <HomePage currentUser={currentUser}/>
-                  </Route>
-              </Switch>
+                  </Route> */}
+              </Routes>
           </div>
       </div>
     </Router>

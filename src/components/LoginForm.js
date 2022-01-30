@@ -5,7 +5,8 @@ import './LoginForm.css';
 
 function LoginForm(props){
   const [formField, setFormField] = useState({ userInfo: "", password: "" })
-
+  let navigate = useNavigate();
+  
   const onUserInfoChange = (e) => {
     setFormField({
       ...formField,
@@ -22,6 +23,7 @@ function LoginForm(props){
 
   const onLoginFormSubmit = (e) => {
     e.preventDefault();
+    
     /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const userInfo = document.getElementById('userInfo');
     const password = document.getElementById('password');
@@ -47,9 +49,9 @@ function LoginForm(props){
       if (response.status != 200) {
         // give error messgae, stay on login page
       } else {
-        userId = response.data['user_id']
-        console.log('user_id', userId)
-        props.updateCurrUser(userId)
+        // userId = response.data['user_id']
+        // console.log('user_id', userId)
+        // props.updateCurrUser(userId)
         // redirect to homepage
       }
       setFormField({
