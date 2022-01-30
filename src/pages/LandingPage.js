@@ -1,7 +1,7 @@
 import LoginForm from '../components/LoginForm'
 import './LandingPage.css'
 
-const LoginPage = (props) => {
+const LandingPage = (props) => {
 
     const onClick = (e) => {
         // route user to submit form page
