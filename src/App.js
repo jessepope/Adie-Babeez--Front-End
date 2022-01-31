@@ -34,16 +34,16 @@ function App() {
               element={<HomePage currentUser={currentUser}/>}
             />
             <Route
-            path="newpost"
-            element={<NewPostPage currentUser={currentUser}/>}
+              path="/newpost"
+              element={<NewPostPage currentUser={currentUser}/>}
             />
             <Route 
-            path="myprofile"
-            element={<MyProfilePage currentUser={currentUser} />}
+              path="/myprofile"
+              element={<MyProfilePage currentUser={currentUser} />}
             />
             <Route 
-            path="theirprofile"
-            element={<TheirProfilePage currentUser={currentUser} />}
+              path="/theirprofile/userid"
+              element={<TheirProfilePage currentUser={currentUser} />}
             />
           </Routes>
         </div>
