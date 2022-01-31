@@ -21,15 +21,9 @@ function SignUpForm(props){
     const userName = document.getElementById('userInfo');
     const password = document.getElementById('password');
     const email = document.getElementById('email');
-    // const pronouns = document.getElementById('pronouns');
-    // const location = document.getElementById('location');
-    // const className = document.getElementById('className');
-    // const campus = document.getElementById('campus');
-    // const bio = document.getElementById('bio');
 
-    const validData = true
+    let validData = true
 
-      
     if (formField.userName.length ===0 || formField.userName.length > 50) {
       /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
       userName.style.borderColor= 'red'; 
@@ -49,9 +43,7 @@ function SignUpForm(props){
     if (validData === true) {axios
     .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, formField)
     .then((response) => {
-      /*userId = response.data['user_id']
-      console.log('user_id', userId)
-      props.updateCurrUser(userId)*/
+      props.updateCurrUser(response.data)
       setFormField({
         userInfo: "",
         password: "",
@@ -71,9 +63,9 @@ function SignUpForm(props){
         id="userName"
         minLength={1}
         maxLength={80}
-        name="user-name"
+        name="userName"
         value= {formField.userName}
-        placeholder="userName" 
+        placeholder="username" 
         onChange={onFieldChange}
         ></input>
         <input 
@@ -88,7 +80,7 @@ function SignUpForm(props){
         <input 
         id="password"
         minLength={1}
-        maxLength={100}
+        maxLength={50}
         name="password"
         value= {formField.password}
         placeholder="password"
@@ -96,8 +88,7 @@ function SignUpForm(props){
         ></input>
         <input 
         id="pronouns"
-        minLength={1}
-        maxLength={100}
+        maxLength={50}
         name="pronouns"
         value= {formField.pronouns}
         placeholder="pronouns"
@@ -105,17 +96,15 @@ function SignUpForm(props){
         ></input>
         <input 
         id="location"
-        minLength={1}
-        maxLength={100}
+        maxLength={50}
         name="location"
-        value= {formField.campus}
+        value= {formField.location}
         placeholder="city and state"
         onChange={onFieldChange}
         ></input>
         <input 
         id="className"
-        minLength={1}
-        maxLength={100}
+        maxLength={50}
         name="className"
         value= {formField.className}
         placeholder="class name"
@@ -123,8 +112,7 @@ function SignUpForm(props){
         ></input>
         <input 
         id="campus"
-        minLength={1}
-        maxLength={100}
+        maxLength={50}
         name="campus"
         value= {formField.campus}
         placeholder="campus"
@@ -132,8 +120,7 @@ function SignUpForm(props){
         ></input>
         <input 
         id="bio"
-        minLength={1}
-        maxLength={100}
+        maxLength={50}
         name="bio"
         value= {formField.bio}
         placeholder="bio"

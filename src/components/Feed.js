@@ -7,11 +7,22 @@ const Feed = (props) => {
   // make api call to get all posts with nested route to get all comments and then render posts into feed container
   const currentUser = props.currentUser;
 
+const renderPosts = (props) => {
+//  API call to render all posts
+// for post in props.posts, create post component
+// how to return all posts?
+  return (
+    <div className="posts" >
+    
+    </div>
+  )
+};
+
   return (
   <div className="feed container">
     <Link to='/newpost'>New Post</Link>
-    {/* need to render all posts here instead of just one */}
-    <Post />
+    
+    {/* display all posts renders with renderPosts */}
   </div>
   )
 };

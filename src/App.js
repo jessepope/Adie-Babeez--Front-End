@@ -4,18 +4,17 @@ import "./App.css";
 import React from "react";
 import { useState } from "react";
 import LandingPage from "./pages/LandingPage";
-import HomePage from './pages/HomePage';
-import SignUpPage from './pages/SignUpPage';
-import NewPostPage from './pages/NewPostPage';
-import MyProfilePage from './pages/MyProfilePage';
-import TheirProfilePage from './pages/TheirProfilePage';
+import HomePage from "./pages/HomePage";
+import SignUpPage from "./pages/SignUpPage";
+import NewPostPage from "./pages/NewPostPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const updateCurrUser = (props) => {
     setCurrentUser(props);
   };
-  
+
   return (
     <Router>
       <div className="App">
@@ -28,22 +27,22 @@ function App() {
             <Route
               path="/signup"
               element={<SignUpPage updateCurrUser={updateCurrUser} />}
-              />
-            <Route 
+            />
+            <Route
               path="/feed"
-              element={<HomePage currentUser={currentUser}/>}
+              element={<HomePage currentUser={currentUser} />}
             />
             <Route
               path="/newpost"
-              element={<NewPostPage currentUser={currentUser}/>}
+              element={<NewPostPage currentUser={currentUser} />}
             />
-            <Route 
-              path="/myprofile"
-              element={<MyProfilePage currentUser={currentUser} />}
+            <Route
+              path="/profile"
+              element={<ProfilePage currentUser={currentUser} />}
             />
-            <Route 
-              path="/theirprofile/userid"
-              element={<TheirProfilePage currentUser={currentUser} />}
+            <Route
+              path="/newpost"
+              element={<NewPostPage currentUser={currentUser} />}
             />
           </Routes>
         </div>
