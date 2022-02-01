@@ -50,7 +50,7 @@ function LoginForm(props){
       if (response.status !== 200) {
         // give error messgae, stay on login page
       } else {
-        // props.updateCurrUser(response.data)
+        props.updateCurrUser(response.data)
         navigate(`/feed`);
       }
       setFormField({
