@@ -20,7 +20,6 @@ const renderPosts = (props) => {
 
   return (
   <div className="feed container">
-    <Link to='/newpost'>New Post</Link>
     
     {/* display all posts renders with renderPosts */}
   </div>

@@ -40,10 +40,6 @@ function App() {
               path="/profile"
               element={<ProfilePage currentUser={currentUser} />}
             />
-            <Route
-              path="/newpost"
-              element={<NewPostPage currentUser={currentUser} />}
-            />
           </Routes>
         </div>
       </div>
