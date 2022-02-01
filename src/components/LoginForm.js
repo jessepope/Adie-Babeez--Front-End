@@ -79,6 +79,7 @@ function LoginForm(props){
         placeholder="email or username" 
         onChange={onUserInfoChange}
         ></input>
+        <br></br>
         <input 
         id="password"
         minLength={1}
@@ -88,6 +89,7 @@ function LoginForm(props){
         placeholder="password"
         onChange={onPasswordChange}
         ></input>
+        <br></br>
         <input type="submit" value="Submit" />
       </form>
 

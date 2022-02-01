@@ -1,0 +1,40 @@
+.sign-up-form {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-half {
+    background-color: pink;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    flex: 0 0 50%; /* flex-basis: 50% */
+  }
+  
+  .right-half {
+    flex: 0 0 50%; /* flex-basis: 50% */
+    background-image: url(../images/gbear.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: white;
+    padding: 1rem;
+    box-sizing: border-box; /* make sure 50% is still 50% after you add padding */
+    overflow-y: auto; /* scrollability here */
+  }
+  input{
+      margin:10px;
+  }
+
+  .sign-up-title{
+      color:white;
+      text-align: center;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 30px;
+  }
+  .sign-up-subt{
+    color: rgb(221, 46, 237);
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
