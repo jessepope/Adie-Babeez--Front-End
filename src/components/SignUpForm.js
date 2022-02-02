@@ -39,8 +39,9 @@ function SignUpForm(props){
       email.style.borderColor= 'red';
       validData = false; 
     };
-
-    if (validData === true) {axios
+    
+    if (validData === true) {
+    axios
     .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, formField)
     .then((response) => {
       props.updateCurrUser(response.data)
