@@ -10,7 +10,7 @@ import Feed from "../components/Feed";
 // comment
 const HomePage = (props) => {
   return (
-    <div className="homepage">
+    <div className='grid-container'>
       <NavBar currentUser={props.currentUser} />
       <Feed currentUser={props.currentUser} />
     </div>
