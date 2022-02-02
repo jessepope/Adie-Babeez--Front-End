@@ -7,6 +7,13 @@ function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+  };
+
   const onFieldChange = (e) => {
     setFormField({
       ...formField,
@@ -35,18 +42,16 @@ function LoginForm(props) {
     if (validEmail === true && validPassword === true) {
       console.log(formField);
       axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
+        .post(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
         .then((response) => {
           console.log("good");
           // if login is correct, redirect to homepage
-          props.updateCurrUser(response.data);
+          props.updateCurrUser(response.data); /* need to work on it */
           navigate(`/feed`);
         })
         /*possibly adding logic*/
-        .catch(() => {
-          console.log(
-            "Username or email is already used. Please re-enter the form."
-          );
+        .catch((err) => {
+          console.log(err);
         });
     }
   };

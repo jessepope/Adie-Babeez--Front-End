@@ -28,13 +28,12 @@ function App() {
               path="/signup"
               element={<SignUpPage updateCurrUser={updateCurrUser} />}
             />
-            
+
             <Route
               path="/feed"
               element={<HomePage currentUser={currentUser} />}
-              
             />
-          
+
             <Route
               path="/newpost"
               element={<NewPostPage currentUser={currentUser} />}
