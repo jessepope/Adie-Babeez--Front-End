@@ -18,9 +18,7 @@ function LoginForm(props) {
 
   const onLoginFormSubmit = (e) => {
     e.preventDefault();
-    // const updateCurrUser = (props) => {
-    //   props.updateCurrUser()
-    // };
+  
     // /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const email = document.getElementById("email");
     const password = document.getElementById("password");
@@ -41,13 +39,9 @@ function LoginForm(props) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
         .then((response) => {
-          console.log(response);
-          // if login is correct, redirect to homepage
-          myContext.setCurrentUser(response.data); /* need to work on it */
-          console.log('currentUser',myContext.userVariable)
+          myContext.setCurrentUser(response.data);
           navigate(`/feed`);
         })
-        /*possibly adding logic*/
         .catch((err) => {
           console.log(err);
         });

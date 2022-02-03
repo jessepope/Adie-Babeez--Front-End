@@ -27,7 +27,7 @@ function NewPostForm(props) {
     let validTitle = true;
     let validText = true;
 
-    // put char limit on element, then we cna remove check for over 50
+    // put char limit on element, then we can remove check for over 50
     if (formField.title.length === 0 || formField.title.length > 50) {
     title.style.borderColor = "red";
       validTitle = false;
@@ -40,7 +40,7 @@ function NewPostForm(props) {
     if (validTitle === true && validText=== true) {
       formField["user_id"] = userId;
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}/newpost`, [formField])
+        .post(`${process.env.REACT_APP_BACKEND_URL}/posts/newpost`, [formField])
         .then((response) => {
           // add message that post was created successfully
           navigate(`/feed`);
