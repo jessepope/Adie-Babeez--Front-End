@@ -5,7 +5,7 @@ import "./NewPostForm.css";
 import AppContext from "../AppContext"
 
 function NewPostForm(props) {
-  const [formField, setFormField] = useState({ title: "", text: "",user:"" });
+  const [formField, setFormField] = useState({ title: "", text: "" });
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
   const config = {
@@ -25,7 +25,9 @@ function NewPostForm(props) {
   const onNewPostFormSubmit = (e) => {
     e.preventDefault();
     const user = myContext.userVariable
+    console.log("user",user)
     const userId = user["user_id"]
+    console.log("userId",userId)
     const title = document.getElementById("title");
     const text = document.getElementById("text");
 
@@ -41,8 +43,8 @@ function NewPostForm(props) {
     }
 
     if (validTitle === true && validText=== true) {
-      setFormField({user:userId})
-      console.log(formField);
+      formField["user_id"] = userId;
+      console.log(formField)
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/newpost`, [formField])
         .then((response) => {
