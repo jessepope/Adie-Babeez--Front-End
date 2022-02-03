@@ -24,7 +24,7 @@ function SignUpForm(props) {
       [e.target.name]: e.target.value,
     });
   };
- 
+
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
     /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
@@ -35,17 +35,14 @@ function SignUpForm(props) {
     let validData = true;
 
     if (formField.username.length === 0 || formField.username.length > 50) {
-      /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
       username.style.borderColor = "red";
       validData = false;
     }
     if (formField.password.length === 0 || formField.password.length > 50) {
-      /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
       password.style.borderColor = "red";
       validData = false;
     }
     if (formField.email.length === 0 || formField.email.length > 50) {
-      /*ADD CSS FOR THE BORDER TO TURN IT RED MAKE A CSS ID TAG FOR THE BOX*/
       email.style.borderColor = "red";
       validData = false;
     }
@@ -58,7 +55,6 @@ function SignUpForm(props) {
           console.log('signup',myContext.userVariable)
           navigate(`/feed`);
         })
-        /*possibly adding logic*/
         .catch((err) => {
           console.log(err);
         });

@@ -25,9 +25,8 @@ function NewPostForm(props) {
   const onNewPostFormSubmit = (e) => {
     e.preventDefault();
     const user = myContext.userVariable
-    console.log("user",user)
     const userId = user["user_id"]
-    console.log("userId",userId)
+
     const title = document.getElementById("title");
     const text = document.getElementById("text");
 
@@ -44,16 +43,12 @@ function NewPostForm(props) {
 
     if (validTitle === true && validText=== true) {
       formField["user_id"] = userId;
-      console.log(formField)
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/newpost`, [formField])
         .then((response) => {
-          console.log(response);
-          
+          // add message that post was created successfully
           navigate(`/feed`);
-
         })
-        /*possibly adding logic*/
         .catch((err) => {
           console.log(err);
         });
