@@ -9,7 +9,7 @@ const Comment = (props) => {
       <div className="comment-auth">{props.author}{/* link to profile of author */}</div>
       <div className="text">{props.text}</div>
       <div className="comment-buttons">
-        <button className="delete" onClick={props.deleteComment}>
+        <button className="delete" onClick={() => props.deleteComment(props.comment_id)}>
           delete
         </button>
       </div>

@@ -9,6 +9,7 @@ import axios from "axios";
 const Feed = () => {
   const [posts, setPosts] = useState(() => createPostsList());
   const [comments, setComments] = useState([]);
+
   const myContext = useContext(AppContext);
   const user = myContext.userVariable;
   const userId = user["user_id"];
@@ -22,11 +23,30 @@ const Feed = () => {
           user_id={post.user_id}
           title={post.title}
           test={post.text}
+          onCommentDelete={deleteComment}
+          post_id={post.id}
         />
       );
     });
-    return <div>comment list</div>;
+    return <div>{postList}</div>;
   };
+
+  const deleteComment = (comment_id) => {
+    // unsure how to get comment id, this is an example from Inspo Board
+    const id = comment_id
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`)
+      .then(() => {
+        const newComments = [];
+        comments.forEach((comment) => {
+          if (comment.id !== parseInt(id)) {
+            newComments.push(comment);
+          }
+        });
+        setComments(newComments);
+      });
+  };
+
 
   useEffect(() => {
     // API call to get all posts and comments through nested route?
@@ -36,11 +56,10 @@ const Feed = () => {
       .get(`${process.env.REACT_APP_BACKEND_URL}/posts/all`)
       .then((response) => {
         setPosts(response.data.posts);
-        setComments(response.data.posts.comments);
+        // setComments(response.data.posts.comments);
       });
   }, []);
 
-  useEffect(() => {
     const likePost = (e) => {
       const id = e.target.parentNode.parentNode.getAttribute("id");
       axios
@@ -73,30 +92,7 @@ const Feed = () => {
         });
     };
 
-    const deleteComment = (e) => {
-      // unsure how to get comment id, this is an example from Inspo Board
-      const id = e.target.parentNode.parentNode.getAttribute("id");
-      axios
-        .delete(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`)
-        .then(() => {
-          const newComments = [];
-          comments.forEach((comment) => {
-            if (comment.id !== parseInt(id)) {
-              newComments.push(comment);
-            }
-          });
-          setPosts(newComments);
-        });
-    };
-    if (comments) {
-      const commentList = comments.map((comment) => {
-        return <Comment onClick={deleteComment} />;
-      });
-      setComments(commentList);
-    }
-  }, [posts, comments]);
-
-  //  somehow get comments from post API call?
+  // somehow get comments from post API call?
   // how to return all comments? not sure where to put this
 
   return (

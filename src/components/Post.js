@@ -4,9 +4,16 @@ import { Link } from "react-router-dom";
 import AppContext from "../AppContext";
 
 const Post = (props) => {
+  let commentList = null
+  if (props.comments) {
+    commentList = props.comments.map((comment) => {
+      return <Comment comment_id={comment.id} onClick={props.onCommentDelete} />;
+    });
+  }
+
   return (
     <div className="post">
-      <div className="cpost-auth">
+      <div className="post-auth">
         {props.author}
         {/* link to profile of author */}
       </div>
@@ -21,7 +28,7 @@ const Post = (props) => {
         </button>
       </div>
       <div className="comment-section">
-        {/* should we render all comments here? */}
+        {commentList}
       </div>
     </div>
   );
