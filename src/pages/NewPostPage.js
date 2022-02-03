@@ -5,7 +5,7 @@ import AppContext from "../AppContext";
 
 const NewPostPage = (props) => {
   return (
-    <div className="new-post-age">
+    <div className="new-post-page">
       <NavBar />
       <NewPostForm />
     </div>

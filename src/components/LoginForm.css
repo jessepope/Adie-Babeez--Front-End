@@ -11,5 +11,5 @@
 
 .button:hover {
     background-color: white;
-    transform: scale(1.25);
+    transform: scale(1.15);
 }

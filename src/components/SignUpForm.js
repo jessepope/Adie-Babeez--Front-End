@@ -142,6 +142,7 @@ function SignUpForm(props) {
           <input id="sign-up-button" type="submit" value="Submit" />
         </div>
       </div>
+      {/* i think the industry standard way might be to put the img element here and then link the gummy bear image? */}
       <div className="right-half"></div>
     </form>
   );

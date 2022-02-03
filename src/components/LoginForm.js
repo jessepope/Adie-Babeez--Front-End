@@ -8,12 +8,6 @@ function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      accept: "application/json",
-    },
-  };
 
   const onFieldChange = (e) => {
     setFormField({

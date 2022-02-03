@@ -8,12 +8,6 @@ function NewPostForm(props) {
   const [formField, setFormField] = useState({ title: "", text: "" });
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      accept: "application/json",
-    },
-  };
 
   const onFieldChange = (e) => {
     setFormField({
@@ -32,6 +26,8 @@ function NewPostForm(props) {
 
     let validTitle = true;
     let validText = true;
+
+    // put char limit on element, then we cna remove check for over 50
     if (formField.title.length === 0 || formField.title.length > 50) {
     title.style.borderColor = "red";
       validTitle = false;

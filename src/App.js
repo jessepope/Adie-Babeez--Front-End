@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import { useState } from "react";
@@ -30,25 +29,25 @@ function App() {
             <Routes>
               <Route
                 path=""
-                element={<LandingPage updateCurrUser={updateCurrUser} />}
+                element={<LandingPage />}
               />
               <Route
                 path="/signup"
-                element={<SignUpPage updateCurrUser={updateCurrUser} />}
+                element={<SignUpPage />}
               />
 
               <Route
                 path="/feed"
-                element={<HomePage currentUser={currentUser} />}
+                element={<HomePage />}
               />
 
               <Route
                 path="/newpost"
-                element={<NewPostPage currentUser={currentUser} />}
+                element={<NewPostPage />}
               />
               <Route
                 path="/profile"
-                element={<ProfilePage currentUser={currentUser} />}
+                element={<ProfilePage />}
               />
             </Routes>
           </div>

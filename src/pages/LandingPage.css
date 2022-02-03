@@ -1,4 +1,4 @@
-.title{
+.title {
     text-align: center;
     color: rgb(97, 198, 172);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -7,7 +7,7 @@
 
 }
 
-.slogan{
+.slogan {
     text-align: center;
     color: rgb(224, 157, 227);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -15,14 +15,14 @@
     margin-top: 0px;
 }
 
-.login-page{
+.login-page {
     height: 100vh;
     background-image: url(../images/bg.png) ;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.login-form-container{
+.login-form-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
