@@ -1,29 +1,111 @@
-import Post from './Post';
-import './Feed.css';
-import { Link } from 'react-router-dom';
+import Post from "./Post";
+import Comment from "./Comment";
+import "./Feed.css";
+import { Link } from "react-router-dom";
+import AppContext from "../AppContext";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
 
-// props will containe user info as currentUser={props.currentUser}
-const Feed = (props) => {
-  // make api call to get all posts with nested route to get all comments and then render posts into feed container
-  const currentUser = props.currentUser;
+const Feed = () => {
+  const [posts, setPosts] = useState(() => createPostsList());
+  const [comments, setComments] = useState([]);
+  const myContext = useContext(AppContext);
+  const user = myContext.userVariable;
+  const userId = user["user_id"];
 
-const renderPosts = (props) => {
-//  API call to render all posts
-// for post in props.posts, create post component
-// how to return all posts?
+  const createPostsList = () => {
+    const postList = posts.map((post) => {
+      return (
+        <Post
+          onDeleteClick={deletePost}
+          onLikeClick={likePost}
+          user_id={post.user_id}
+          title={post.title}
+          test={post.text}
+        />
+      );
+    });
+    return <div>comment list</div>;
+  };
+
+  useEffect(() => {
+    // API call to get all posts and comments through nested route?
+    // conditional rendering (in Post?) of "delete" and "edit" buttons if user id of post matches curr user
+
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/posts/all`)
+      .then((response) => {
+        setPosts(response.data.posts);
+        setComments(response.data.posts.comments);
+      });
+  }, []);
+
+  useEffect(() => {
+    const likePost = (e) => {
+      const id = e.target.parentNode.parentNode.getAttribute("id");
+      axios
+        .put(`${process.env.REACT_APP_BACKEND_URL}/posts/${id}/like`)
+        .then(() => {
+          const newPosts = posts.map((post) => {
+            if (post.id === parseInt(id)) {
+              post.likes_count += 1;
+            }
+            return post;
+          });
+          setPosts(newPosts);
+        })
+        .catch(() => {});
+    };
+
+    const deletePost = (e) => {
+      // unsure how to get post id, this is an example from Inspo Board
+      const id = e.target.parentNode.parentNode.getAttribute("id");
+      axios
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/posts/${id}`)
+        .then(() => {
+          const newPosts = [];
+          posts.forEach((post) => {
+            if (post.id !== parseInt(id)) {
+              newPosts.push(post);
+            }
+          });
+          setPosts(newPosts);
+        });
+    };
+
+    const deleteComment = (e) => {
+      // unsure how to get comment id, this is an example from Inspo Board
+      const id = e.target.parentNode.parentNode.getAttribute("id");
+      axios
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`)
+        .then(() => {
+          const newComments = [];
+          comments.forEach((comment) => {
+            if (comment.id !== parseInt(id)) {
+              newComments.push(comment);
+            }
+          });
+          setPosts(newComments);
+        });
+    };
+    if (comments) {
+      const commentList = comments.map((comment) => {
+        return <Comment onClick={deleteComment} />;
+      });
+      setComments(commentList);
+    }
+  }, [posts, comments]);
+
+  //  somehow get comments from post API call?
+  // how to return all comments? not sure where to put this
+
   return (
-    <div className="posts" >
-    
+    <div className="feed container">
+      <p>This is the feed container</p>
+      {/* render all posts here using post state variable and Post component */}
+      {/* need to render Post to pass like and delete functions into Post component */}
     </div>
-  )
-};
-
-  return (
-  <div className="feed container">
-    
-    {/* display all posts renders with renderPosts */}
-  </div>
-  )
+  );
 };
 
 export default Feed;

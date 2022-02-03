@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginForm.css";
+import AppContext from "../AppContext";
 
 function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
   let navigate = useNavigate();
-
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     accept: "application/json",
-  //   },
-  // };
+  const myContext = useContext(AppContext);
 
   const onFieldChange = (e) => {
     setFormField({
@@ -24,7 +19,7 @@ function LoginForm(props) {
   const onLoginFormSubmit = (e) => {
     e.preventDefault();
 
-    /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
+    // /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const email = document.getElementById("email");
     const password = document.getElementById("password");
 
@@ -44,16 +39,17 @@ function LoginForm(props) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
         .then((response) => {
-          console.log("good");
-          // if login is correct, redirect to homepage
-          // props.updateCurrUser(response.data); /* need to work on it */
+          myContext.setCurrentUser(response.data);
           navigate(`/feed`);
         })
-        /*possibly adding logic*/
         .catch((err) => {
           console.log(err);
         });
     }
+  };
+
+  const onSignUpClick = (e) => {
+    navigate(`/signup`);
   };
 
   return (
@@ -67,7 +63,6 @@ function LoginForm(props) {
         placeholder="email"
         onChange={onFieldChange}
       ></input>
-      <br></br>
       <input
         id="password"
         minLength={1}
@@ -77,8 +72,13 @@ function LoginForm(props) {
         placeholder="password"
         onChange={onFieldChange}
       ></input>
-      <br></br>
-      <input type="submit" value="Login" />
+      <input className="button" type="submit" value="Login" />
+      <input
+        className="button"
+        type="submit"
+        value="Sign Up"
+        onClick={onSignUpClick}
+      />
     </form>
   );
 }

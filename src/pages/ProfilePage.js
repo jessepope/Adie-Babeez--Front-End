@@ -1,10 +1,10 @@
 import './ProfilePage.css';
 import NavBar from '../components/NavBar';
+import AppContext from "../AppContext";
 
-const ProfilePage = (props) => {
-  console.log(props)
+const ProfilePage = () => {
   return (
-    <div className='my-profile-container'>
+    <div className='profile-page'>
       <NavBar />
     </div>
   );

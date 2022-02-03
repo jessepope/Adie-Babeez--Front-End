@@ -1,28 +1,27 @@
-import Comment from './Comment';
-import './Post.css';
-import { Link } from 'react-router-dom';
+import Comment from "./Comment";
+import "./Post.css";
+import { Link } from "react-router-dom";
+import AppContext from "../AppContext";
 
 const Post = (props) => {
-
-  const renderComments = (props) => {
-    const comments = props.comments
-//  somehow get comments from post API call?
-// for comment in props.comments, create post component
-// how to return all comments?
   return (
-    <div className="comments" >
-    
-    </div>
-  )
-};
-  return (
-    <div className='post'>
-      {/* link to profile of author */}
-      <Link to="/profile">{props.username}</Link> 
-      <h4>post title</h4>
-      <p>post text</p>
-      <div className='comment-section'>
-        {/* need to render all comments here */}
+    <div className="post">
+      <div className="cpost-auth">
+        {props.author}
+        {/* link to profile of author */}
+      </div>
+      <div className="text">{props.title}</div>
+      <div className="text">{props.text}</div>
+      <div className="comment-buttons">
+        <button className="like" onLikeClick={props.LikePost}>
+          delete
+        </button>
+        <button className="delete" onDeleteClick={props.deletePost}>
+          delete
+        </button>
+      </div>
+      <div className="comment-section">
+        {/* should we render all comments here? */}
       </div>
     </div>
   );
