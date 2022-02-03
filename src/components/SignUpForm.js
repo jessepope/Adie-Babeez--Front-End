@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SignUpForm.css";
+import AppContext from "../AppContext";
 
 function SignUpForm(props) {
+  const myContext = useContext(AppContext);
   const [formField, setFormField] = useState({
     username: "",
     email: "",
@@ -22,10 +24,9 @@ function SignUpForm(props) {
       [e.target.name]: e.target.value,
     });
   };
-
+ 
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
-
     /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const username = document.getElementById("userInfo");
     const password = document.getElementById("password");
@@ -52,7 +53,9 @@ function SignUpForm(props) {
       console.log(formField);
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
-        .then(() => {
+        .then((response) => {
+          myContext.setCurrentUser(response.data);
+          console.log('signup',myContext.userVariable)
           navigate(`/feed`);
         })
         /*possibly adding logic*/

@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginForm.css";
+import AppContext from "../AppContext"
 
 function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
   let navigate = useNavigate();
-
+  const myContext = useContext(AppContext);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -23,8 +24,10 @@ function LoginForm(props) {
 
   const onLoginFormSubmit = (e) => {
     e.preventDefault();
-
-    /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
+    // const updateCurrUser = (props) => {
+    //   props.updateCurrUser()
+    // };
+    // /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const email = document.getElementById("email");
     const password = document.getElementById("password");
 
@@ -44,9 +47,10 @@ function LoginForm(props) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
         .then((response) => {
-          console.log("good");
+          console.log(response);
           // if login is correct, redirect to homepage
-          props.updateCurrUser(response.data); /* need to work on it */
+          myContext.setCurrentUser(response.data); /* need to work on it */
+          console.log('currentUser',myContext.userVariable)
           navigate(`/feed`);
         })
         /*possibly adding logic*/
