@@ -7,12 +7,12 @@ function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      accept: "application/json",
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     accept: "application/json",
+  //   },
+  // };
 
   const onFieldChange = (e) => {
     setFormField({
@@ -46,7 +46,7 @@ function LoginForm(props) {
         .then((response) => {
           console.log("good");
           // if login is correct, redirect to homepage
-          props.updateCurrUser(response.data); /* need to work on it */
+          // props.updateCurrUser(response.data); /* need to work on it */
           navigate(`/feed`);
         })
         /*possibly adding logic*/
