@@ -4,20 +4,15 @@ import Feed from "../components/Feed";
 import AppContext from "../AppContext";
 import { useContext } from "react";
 
-// use global currentUser to load user data
-// navbar
-// render feed
-// make post
-// edit post
-// comment
-const HomePage = (props) => {
-  const myContext= useContext(AppContext);
 
-  console.log('HomePage',myContext.userVariable)
+const HomePage = () => {
+  const myContext= useContext(AppContext);
+  console.log('HomePage',myContext.userVariable);
+
   return (
     <div className='home-page'>
-      <NavBar currentUser={props.currentUser} />
-      <Feed currentUser={props.currentUser} />
+      <NavBar />
+      {/* <Feed /> */}
     </div>
   );
 };
