@@ -2,6 +2,7 @@ import './NewPostForm.css'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import AppContext from "../AppContext";
 
 const NewPostForm = (props) => {
   const [formField, setFormField] = useState({ title: "", text: "" })

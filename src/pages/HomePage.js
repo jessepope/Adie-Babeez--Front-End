@@ -15,7 +15,7 @@ const HomePage = (props) => {
 
   console.log('HomePage',myContext.userVariable)
   return (
-    <div className='grid-container'>
+    <div className='home-page'>
       <NavBar currentUser={props.currentUser} />
       <Feed currentUser={props.currentUser} />
     </div>

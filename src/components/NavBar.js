@@ -1,20 +1,16 @@
 import { Link } from 'react-router-dom';
+import './NavBar.css'
+import AppContext from "../AppContext";
 
-const NavBar = (props) => {
+const NavBar = () => {
 
   return (
 
-  
-    <nav>
-      <div className='grid-container'>
-        <div className='grid-item'><Link to="/profile" style={{ textDecoration: 'none' }}>My Profile</Link></div>
-        <div className='grid-item'><Link to="/feed" style={{ textDecoration: 'none' }}>Home</Link></div>
-        <div className='grid-item'><Link to="/newpost" style={{ textDecoration: 'none' }}>New Post</Link></div>
-      </div>
+    <nav className='nav-container'>
+        <div className='nav-item'><Link className='nav-link' to="/profile" style={{ textDecoration: 'none' }}>My Profile</Link></div>
+        <div className='nav-item'><Link className='nav-link' to="/feed" style={{ textDecoration: 'none' }}>Home</Link></div>
+        <div className='nav-item'><Link className='nav-link' to="/newpost" style={{ textDecoration: 'none' }}>New Post</Link></div>
     </nav>
-
-    
-      
 
   );
 };

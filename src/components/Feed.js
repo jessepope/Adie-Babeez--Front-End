@@ -1,6 +1,7 @@
 import Post from './Post';
 import './Feed.css';
 import { Link } from 'react-router-dom';
+import AppContext from "../AppContext";
 
 // props will containe user info as currentUser={props.currentUser}
 const Feed = (props) => {
@@ -20,8 +21,7 @@ const renderPosts = (props) => {
 
   return (
   <div className="feed container">
-    
-    {/* display all posts renders with renderPosts */}
+    <p>This is the feed container</p>
   </div>
   )
 };

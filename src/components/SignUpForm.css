@@ -8,18 +8,18 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size:cover;
-    flex: 0 0 50%; /* flex-basis: 50% */
+    flex: 0 0 50%; 
   }
   
   .right-half {
-    flex: 0 0 50%; /* flex-basis: 50% */
+    flex: 0 0 50%; 
     background-image: url(../images/gbear.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: white;
     padding: 1rem;
-    box-sizing: border-box; /* make sure 50% is still 50% after you add padding */
-    overflow-y: auto; /* scrollability here */
+    box-sizing: border-box; 
+    overflow-y: auto; 
   }
   input{
       margin:10px;
@@ -38,3 +38,17 @@
     font-size: 20px;
     font-weight: bold;
   }
+.sign-up-inputs {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+#sign-up-button {
+  background-color: rgb(97, 198, 172);
+}
+
+#sign-up-button:hover {
+  transform: scale(1.1);
+  background-color: white;
+}

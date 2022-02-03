@@ -60,6 +60,10 @@ function LoginForm(props) {
     }
   };
 
+  const onSignUpClick = (e) => {
+      navigate(`/signup`);
+  }
+
   return (
     <form className="login-form" onSubmit={onLoginFormSubmit}>
       <input
@@ -71,7 +75,6 @@ function LoginForm(props) {
         placeholder="email"
         onChange={onFieldChange}
       ></input>
-      <br></br>
       <input
         id="password"
         minLength={1}
@@ -81,8 +84,8 @@ function LoginForm(props) {
         placeholder="password"
         onChange={onFieldChange}
       ></input>
-      <br></br>
-      <input type="submit" value="Login" />
+      <input className="button" type="submit" value="Login" />
+      <input className="button" type="submit" value="Sign Up" onClick={onSignUpClick} />
     </form>
   );
 }

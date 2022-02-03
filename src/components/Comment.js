@@ -1,5 +1,6 @@
 import './Comment.css';
 import { Link } from 'react-router-dom';
+import AppContext from "../AppContext";
 
 const Comment = (props) => {
 
