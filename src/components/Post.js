@@ -24,7 +24,7 @@ const Post = (props) => {
           id="delete"
           onDeleteClick={() => props.deletePost(props.post_id)}
         >
-          delete
+          &#x274c;
         </button>
       );
     }
@@ -60,20 +60,21 @@ const Post = (props) => {
   }
 
   return (
-    <div className="post">
-      <div className="post-author">
+    <div >
+      <div>
         {props.username}
         {/* link to profile of user who made post */}
       </div>
-      <div className="title">{props.title}</div>
-      <div className="text">{props.text}</div>
+      <div className="post-border">
+      <div className="title2">{props.title}</div>
+      <div className="text2">{props.text}</div>
       <div className="post-buttons">
         <button
           className="button"
           id="like-button"
           onLikeClick={() => props.LikePost(props.post_id)}
         >
-          like
+          &#129293;
         </button>
         <button
           className="button"
@@ -81,16 +82,17 @@ const Post = (props) => {
           post_id={props.post_id}
           onClick={submitCommentForm}
         >
-          comment
+          &#128172;
         </button>
         {checkUser(props)}
-      </div>
+      </div> 
       {/* conditionally rendered variable: it will hold comment form or be null */}
       {commentForm}
       <div className="comment-section">
         {/* conditionally rendered variable: will hold comments if they exist or be null */}
         {commentList}
       </div>
+     </div>
     </div>
   );
 };

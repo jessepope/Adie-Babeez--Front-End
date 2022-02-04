@@ -91,7 +91,7 @@ const Feed = () => {
     };
 
   return (
-    <div className="feed container">
+    <div className="feed-container">
       {/* before displaying post components, sort them but props (props.date_posted, props.campus) */}
       {postComponents ? postComponents.map((postComponent) => (postComponent)) : null}
     </div>
