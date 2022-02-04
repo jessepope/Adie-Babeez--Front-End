@@ -12,7 +12,7 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       <NavBar />
-      {/* <Feed /> */}
+      <Feed />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./NewPostForm.css";
@@ -6,6 +6,7 @@ import AppContext from "../AppContext"
 
 function NewPostForm(props) {
   const [formField, setFormField] = useState({ title: "", text: "" });
+  const [successMessage, setSuccessMessage] = useState(false);
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
 
@@ -43,7 +44,8 @@ function NewPostForm(props) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/posts/newpost`, [formField])
         .then((response) => {
-          // add message that post was created successfully
+          setSuccessMessage(true);
+          // time out
           navigate(`/feed`);
         })
         .catch((err) => {
@@ -51,29 +53,39 @@ function NewPostForm(props) {
         });
     }
   };
+  let successfulPost = null;
+  if (successMessage === true) {
+    successfulPost = <h3>successful post</h3>
+  };
+
+
+
 
   return (
-    <form className="new-post-form" onSubmit={onNewPostFormSubmit}>
-      <input
-        id="title"
-        minLength={1}
-        maxLength={80}
-        name="title"
-        value={formField.title}
-        placeholder="title"
-        onChange={onFieldChange}
-      ></input>
-      <input
-        id="text"
-        minLength={1}
-        maxLength={100}
-        name="text"
-        value={formField.text}
-        placeholder="text"
-        onChange={onFieldChange}
-      ></input>
-      <input className="button" type="submit" value="Submit New Post" />
-    </form>
+    <div>
+      <form className="new-post-form" onSubmit={onNewPostFormSubmit}>
+        <div className="success-message">{successfulPost}</div>
+        <input
+          id="title"
+          minLength={1}
+          maxLength={80}
+          name="title"
+          value={formField.title}
+          placeholder="title"
+          onChange={onFieldChange}
+        ></input>
+        <input
+          id="text"
+          minLength={1}
+          maxLength={100}
+          name="text"
+          value={formField.text}
+          placeholder="text"
+          onChange={onFieldChange}
+        ></input>
+        <input className="button" type="submit" value="Submit New Post" />
+      </form>
+    </div>
   );
 }
 export default NewPostForm;
