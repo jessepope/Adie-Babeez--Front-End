@@ -25,15 +25,22 @@ function LoginForm(props) {
 
     let validEmail = true;
     let validPassword = true;
-    if (formField.email.length === 0 || formField.email.length > 50) {
+    let showErrorMessage = false;
+    if (formField.email.length === 0) {
+
       email.style.borderColor = "red";
+      showErrorMessage = true;
       validEmail = false;
     }
-    if (formField.password.length === 0 || formField.password.length > 50) {
+    if (formField.password.length === 0) {
       password.style.borderColor = "red";
+      showErrorMessage = true;
       validPassword = false;
     }
-
+    // let errorMessage = <p></p>;
+    // if (showErrorMessage === true ) {
+    //   errorMessage = <p className="error-message"> Error Message </p>;
+    // };
     if (validEmail === true && validPassword === true) {
       console.log(formField);
       axios
@@ -55,6 +62,7 @@ function LoginForm(props) {
 
   return (
     <form className="login-form" onSubmit={onLoginFormSubmit}>
+      <div className ='error-message-container'></div>
       <input
         id="email"
         minLength={1}
