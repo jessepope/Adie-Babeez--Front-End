@@ -1,0 +1,26 @@
+.post-border {
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: white;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: 5px 10px;
+    align-items: center;
+    width: 400px;
+}
+
+
+.title2 {
+    text-align: center;
+    color: rgb(97, 198, 172);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+.text2{
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

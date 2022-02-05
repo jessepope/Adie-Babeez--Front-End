@@ -41,6 +41,7 @@ function LoginForm(props) {
         .then((response) => {
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
+          // navigate seems to be really slow? Maybe we can try to use something else, like Link?
         })
         .catch((err) => {
           console.log(err);
