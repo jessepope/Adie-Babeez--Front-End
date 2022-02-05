@@ -7,7 +7,7 @@ import FooterEachPage from "../components/FooterEachPage";
 
 const HomePage = () => {
   const myContext= useContext(AppContext);
-  console.log('HomePage',myContext.userVariable);
+  console.log('user', myContext.userVariable)
 
   return (
     <div className='home-page'>
