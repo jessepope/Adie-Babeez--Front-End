@@ -40,7 +40,6 @@ function NewPostForm(props) {
 
     if (validTitle === true && validText=== true) {
       formField["user_id"] = userId;
-      console.log('formField',formField);
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/posts/newpost`, [formField])
         .then((response) => {

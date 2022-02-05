@@ -12,14 +12,11 @@ import AppContext from "./AppContext";
 function App() {
   
     const [currentUser, setCurrentUser] = useState({});
-    const updateCurrUser = (props) => {
-      setCurrentUser(props);
-    };
     const userSettings = {
       userVariable: currentUser,
-      setCurrentUser, 
-      updateCurrUser,
+      setCurrentUser,
     };
+    console.log(currentUser)
 
   return (
     <AppContext.Provider value={userSettings}>
@@ -46,7 +43,7 @@ function App() {
                 element={<NewPostPage />}
               />
               <Route
-                path="/profile"
+                path={"/profile/:id"}
                 element={<ProfilePage />}
               />
             </Routes>

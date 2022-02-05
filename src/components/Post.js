@@ -15,14 +15,12 @@ const Post = (props) => {
 
   const checkUser = (props) => {
     let deleteButton = null;
-    console.log("user", user);
-    console.log("props user", props.user_id);
     if (user_id === props.user_id) {
       deleteButton = (
         <button
-          classname="Button"
+          className="Button"
           id="delete"
-          onDeleteClick={() => props.deletePost(props.post_id)}
+          onClick={() => props.onDeleteClick(props)}
         >
           &#x274c;
         </button>
@@ -33,14 +31,17 @@ const Post = (props) => {
 
   let commentList = null;
   if (props.comments) {
-    commentList = props.comments.map((comment) => {
-      return (
+    commentList = [];
+    props.comments.map((comment) => {
+      commentList.push(
         <Comment
+          key={comment.id}
           username={props.username}
           comment_id={comment.id}
           onClick={props.onCommentDelete}
         />
       );
+      return commentList;
     });
   }
 
@@ -60,39 +61,41 @@ const Post = (props) => {
   }
 
   return (
-    <div >
-      <div>
-        {props.username}
-        {/* link to profile of user who made post */}
-      </div>
+    <div>
       <div className="post-border">
-      <div className="title2">{props.title}</div>
-      <div className="text2">{props.text}</div>
-      <div className="post-buttons">
-        <button
-          className="button"
-          id="like-button"
-          onLikeClick={() => props.LikePost(props.post_id)}
-        >
-          &#129293;
-        </button>
-        <button
-          className="button"
-          id="comment-button"
-          post_id={props.post_id}
-          onClick={submitCommentForm}
-        >
-          &#128172;
-        </button>
-        {checkUser(props)}
-      </div> 
-      {/* conditionally rendered variable: it will hold comment form or be null */}
-      {commentForm}
-      <div className="comment-section">
-        {/* conditionally rendered variable: will hold comments if they exist or be null */}
-        {commentList}
+        <div>
+          <Link className="profile-link" to={`/profile/${props.user_id}`} state={{ user: `${props.user_id}` }}>
+            {props.username}
+          </Link>
+        </div>
+        <div className="title2">{props.title}</div>
+        <div className="text2">{props.text}</div>
+        <div className="post-buttons">
+          <div>{props.likes_count}</div>
+          <button
+            className="button"
+            id="like-button"
+            onClick={() => props.onLikeClick(props.post_id)}
+          >
+            &#129293;
+          </button>
+          <button
+            className="button"
+            id="comment-button"
+            post_id={props.post_id}
+            onClick={submitCommentForm}
+          >
+            &#128172;
+          </button>
+          {checkUser(props)}
+        </div>
+        {/* conditionally rendered variable: it will hold comment form or be null */}
+        {commentForm}
+        <div className="comment-section">
+          {/* conditionally rendered variable: will hold comments if they exist or be null */}
+          {commentList}
+        </div>
       </div>
-     </div>
     </div>
   );
 };
