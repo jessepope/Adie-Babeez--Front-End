@@ -48,7 +48,7 @@ const CommentForm = (props) => {
   return (
     <form className="comment-form" onSubmit={onNewCommentFormSubmit}>
       <div className ='error-message-container'>
-        {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+        {showErrorMessage ? <p className="error-message"> Comment text is required. </p> : null}
       </div>
       <input
         id="text"

@@ -57,7 +57,7 @@ function LoginForm(props) {
   return (
     <form className="login-form" onSubmit={onLoginFormSubmit}>
       <div className ='error-message-container'>
-        {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+        {showErrorMessage ? <p className="error-message"> Incorrect Email and/or Password </p> : null}
       </div>
       <input
         id="email"

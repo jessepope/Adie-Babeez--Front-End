@@ -72,7 +72,7 @@ function SignUpForm(props) {
           required fields.
         </p>
         <div className ='error-message-container'>
-          {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+          {showErrorMessage ? <p className="error-message"> Username Email and Password are required. </p> : null}
         </div>
         <div className="sign-up-inputs">
           <input
