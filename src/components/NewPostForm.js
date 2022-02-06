@@ -6,7 +6,7 @@ import AppContext from "../AppContext"
 
 function NewPostForm(props) {
   const [formField, setFormField] = useState({ title: "", text: "" });
-  const [successMessage, setSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
 
@@ -28,13 +28,15 @@ function NewPostForm(props) {
     let validTitle = true;
     let validText = true;
 
-    // put char limit on element, then we can remove check for over 50
-    if (formField.title.length === 0 || formField.title.length > 50) {
-    title.style.borderColor = "red";
+    
+    if (formField.title.length === 0) {
+      title.style.borderColor = "red";
+      setShowErrorMessage(true);
       validTitle = false;
     }
-    if (formField.text.length === 0 || formField.text.length > 50) {
+    if (formField.text.length === 0) {
       text.style.borderColor = "red";
+      setShowErrorMessage(true);
       validText = false;
     }
 
@@ -43,8 +45,6 @@ function NewPostForm(props) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/posts/newpost`, [formField])
         .then((response) => {
-          setSuccessMessage(true);
-          // time out
           navigate(`/feed`);
         })
         .catch((err) => {
@@ -52,22 +52,18 @@ function NewPostForm(props) {
         });
     }
   };
-  let successfulPost = null;
-  if (successMessage === true) {
-    successfulPost = <h3>successful post</h3>
-  };
-
-
 
 
   return (
     <div>
       <form className="new-post-form" onSubmit={onNewPostFormSubmit}>
-        <div className="success-message">{successfulPost}</div>
+      <div className ='error-message-container'>
+        {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+      </div>
         <input
           id="title"
           minLength={1}
-          maxLength={80}
+          maxLength={40}
           name="title"
           value={formField.title}
           placeholder="title"
@@ -76,7 +72,7 @@ function NewPostForm(props) {
         <input
           id="text"
           minLength={1}
-          maxLength={100}
+          maxLength={80}
           name="text"
           value={formField.text}
           placeholder="text"

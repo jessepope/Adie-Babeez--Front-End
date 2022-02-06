@@ -5,7 +5,9 @@ import "./SignUpForm.css";
 import AppContext from "../AppContext";
 
 function SignUpForm(props) {
+  let navigate = useNavigate();
   const myContext = useContext(AppContext);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [formField, setFormField] = useState({
     username: "",
     email: "",
@@ -16,7 +18,7 @@ function SignUpForm(props) {
     campus: "",
     bio: "",
   });
-  let navigate = useNavigate();
+  
 
   const onFieldChange = (e) => {
     setFormField({
@@ -27,32 +29,32 @@ function SignUpForm(props) {
 
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
-    /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
-    const username = document.getElementById("userInfo");
+    const username = document.getElementById("username");
     const password = document.getElementById("password");
     const email = document.getElementById("email");
 
     let validData = true;
 
-    if (formField.username.length === 0 || formField.username.length > 50) {
+    if (formField.username.length === 0) {
       username.style.borderColor = "red";
+      setShowErrorMessage(true);
       validData = false;
     }
-    if (formField.password.length === 0 || formField.password.length > 50) {
+    if (formField.password.length === 0) {
       password.style.borderColor = "red";
+      setShowErrorMessage(true);
       validData = false;
     }
-    if (formField.email.length === 0 || formField.email.length > 50) {
+    if (formField.email.length === 0) {
       email.style.borderColor = "red";
+      setShowErrorMessage(true);
       validData = false;
     }
     if (validData === true) {
-      console.log(formField);
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
         .then((response) => {
           myContext.setCurrentUser(response.data);
-          console.log('signup',myContext.userVariable)
           navigate(`/feed`);
         })
         .catch((err) => {
@@ -69,6 +71,9 @@ function SignUpForm(props) {
           Please complete the form below. Username, email, and password are
           required fields.
         </p>
+        <div className ='error-message-container'>
+          {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+        </div>
         <div className="sign-up-inputs">
           <input
             id="username"

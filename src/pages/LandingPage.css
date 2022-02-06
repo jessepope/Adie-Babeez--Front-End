@@ -4,7 +4,6 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 80px;
     margin-top: 200px;
-
 }
 
 .slogan {
@@ -16,7 +15,7 @@
 }
 
 .login-page {
-    height: 100vh;
+    /* height: 100vh; */
     background-image: url(../images/bg.png) ;
     background-repeat: no-repeat;
     background-size: cover;

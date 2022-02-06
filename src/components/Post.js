@@ -3,11 +3,15 @@ import CommentForm from "./CommentForm";
 import "./Post.css";
 import { Link } from "react-router-dom";
 import AppContext from "../AppContext";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import axios from 'axios';
 
 const Post = (props) => {
   // state variable to indicate whether you can see the form or not
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [commentComponents, setCommentComponents] = useState([]);
+  
 
   const myContext = useContext(AppContext);
   const user = myContext.userVariable;
@@ -29,21 +33,39 @@ const Post = (props) => {
     return deleteButton;
   };
 
-  let commentList = null;
-  if (props.comments) {
-    commentList = [];
-    props.comments.map((comment) => {
-      commentList.push(
-        <Comment
-          key={comment.id}
-          username={props.username}
-          comment_id={comment.id}
-          onClick={props.onCommentDelete}
-        />
-      );
-      return commentList;
+  useEffect(() => {
+    const deleteComment = (comment_id) => {
+      const id = comment_id;
+      axios
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/comments/${id}`)
+        .then(() => {
+          const newComments = [];
+          comments.forEach((comment) => {
+            if (comment.id !== parseInt(id)) {
+              newComments.push(comment);
+            }
+          });
+          setComments(newComments);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    if (comments) {
+      const commentComponents = comments.map((comment) => {
+        return (
+          <Comment
+            key={comment.id}
+            username={comment.username}
+            comment_id={comment.id}
+            onClick={deleteComment}
+          />
+        );
     });
+    setCommentComponents(commentComponents);
   }
+  }, [comments])
 
   // when comment button is clicked, display comment form
   const submitCommentForm = () => {
@@ -71,7 +93,7 @@ const Post = (props) => {
         <div className="title2">{props.title}</div>
         <div className="text2">{props.text}</div>
         <div className="post-buttons">
-          <div>{props.likes_count}</div>
+          <div>{props.likes}</div>
           <button
             className="button"
             id="like-button"
@@ -93,7 +115,8 @@ const Post = (props) => {
         {commentForm}
         <div className="comment-section">
           {/* conditionally rendered variable: will hold comments if they exist or be null */}
-          {commentList}
+          comment section
+          {commentComponents}
         </div>
       </div>
     </div>
