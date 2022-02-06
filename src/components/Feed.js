@@ -76,6 +76,7 @@ const Feed = () => {
             post_id={post.post_id}
             username={post.username}
             likes={post.likes}
+            comments = {post.comments}
           />
         );
       });

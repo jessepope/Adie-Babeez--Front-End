@@ -11,6 +11,7 @@ const CommentForm = (props) => {
     setCommentText(e.target.value);
   };
   console.log('text', commentText)
+  console.log('props', props)
 
   const onNewCommentFormSubmit = (e) => {
     e.preventDefault();
@@ -31,11 +32,11 @@ const CommentForm = (props) => {
     console.log(validComment)
     if (validComment === true) {
       requestBody["user_id"] = userId;
-      requestBody["comment_text"] = commentText;
+      requestBody["text"] = commentText;
       requestBody["post_id"] = props.post_id;
       console.log(requestBody)
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}/newcomment`, [requestBody])
+        .post(`${process.env.REACT_APP_BACKEND_URL}/comments/newcomment`, [requestBody])
         .then((response) => {
 
         })
@@ -45,7 +46,7 @@ const CommentForm = (props) => {
     }
   };
   return (
-    <form className="comment-form">
+    <form className="comment-form" onSubmit={onNewCommentFormSubmit}>
       <div className ='error-message-container'>
         {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
       </div>
@@ -63,7 +64,6 @@ const CommentForm = (props) => {
         className="button"
         type="submit"
         value="Submit New Comment"
-        onSubmit={onNewCommentFormSubmit}
       />
       <input
         className="button"
