@@ -1,6 +1,7 @@
 import "./ProfilePage.css";
 import NavBar from "../components/NavBar";
 import AppContext from "../AppContext";
+import FooterEachPage from "../components/FooterEachPage"
 import { useContext, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -24,6 +25,7 @@ const ProfilePage = (props) => {
   return (
     <div className="profile-page">
       <NavBar />
+      <FooterEachPage />
     </div>
   );
 };
