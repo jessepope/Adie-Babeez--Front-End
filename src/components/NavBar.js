@@ -5,13 +5,13 @@ import { useContext } from 'react';
 
 const NavBar = () => {
   const myContext = useContext(AppContext);
-  const user = myContext.userVariable;
+  const user_id = myContext.userVariable.user_id;
 
   return (
 
     <nav className='nav-container'>
         <div className='nav-item'>
-          <Link className='nav-link' to={`/profile/${user.user_id}`} state={{ user: `${user.user_id}` }}>
+          <Link className='nav-link' to={`/profile/${user_id}`} state={{ user: `${user_id}` }}>
           My Profile
           </Link>
         </div>

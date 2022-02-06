@@ -9,13 +9,13 @@ import axios from 'axios';
 const Post = (props) => {
   // state variable to indicate whether you can see the form or not
   const [showCommentForm, setShowCommentForm] = useState(false);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(props.comments);
   const [commentComponents, setCommentComponents] = useState([]);
-  
-
+  console.log(comments)
+  console.log('commentComponents',commentComponents)
   const myContext = useContext(AppContext);
   const user = myContext.userVariable;
-  const user_id = user["user_id"];
+  const user_id = user.user_id;
 
   const checkUser = (props) => {
     let deleteButton = null;
@@ -41,7 +41,7 @@ const Post = (props) => {
         .then(() => {
           const newComments = [];
           comments.forEach((comment) => {
-            if (comment.id !== parseInt(id)) {
+            if (comment.comment_id !== parseInt(id)) {
               newComments.push(comment);
             }
           });
@@ -56,13 +56,16 @@ const Post = (props) => {
       const commentComponents = comments.map((comment) => {
         return (
           <Comment
+            text={comment.text}
             key={comment.id}
             username={comment.username}
-            comment_id={comment.id}
-            onClick={deleteComment}
+            comment_id={comment.comment_id}
+            onDeleteClick={deleteComment}
+            user_id={comment.user_id}
           />
         );
     });
+    
     setCommentComponents(commentComponents);
   }
   }, [comments])
@@ -116,7 +119,7 @@ const Post = (props) => {
         <div className="comment-section">
           {/* conditionally rendered variable: will hold comments if they exist or be null */}
           comment section
-          {commentComponents}
+          {commentComponents ? commentComponents : null} 
         </div>
       </div>
     </div>
