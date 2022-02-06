@@ -15,6 +15,11 @@ const NavBar = () => {
           My Profile
           </Link>
         </div>
+        <div className='nav-item'>
+        <Link className='nav-link' to={`/inbox/${user_id}`} state={{ user: `${user_id}` }}>
+          My Inbox
+          </Link>
+          </div>
         <div className='nav-item'><Link className='nav-link' to="/feed">Home</Link></div>
         <div className='nav-item'><Link className='nav-link' to="/newpost">New Post</Link></div>
     </nav>
