@@ -6,11 +6,10 @@ import { useContext } from "react";
 import FooterEachPage from "../components/FooterEachPage";
 
 const HomePage = () => {
-  const myContext= useContext(AppContext);
-  console.log('user', myContext.userVariable)
+  const myContext = useContext(AppContext);
 
   return (
-    <div className='home-page'>
+    <div className="home-page">
       <NavBar />
       <Feed />
       <FooterEachPage />

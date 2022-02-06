@@ -1,14 +1,16 @@
 import AppContext from "../AppContext";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext} from "react";
 import axios from "axios";
 
 const CommentForm = (props) => {
   const [commentText, setCommentText] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const myContext = useContext(AppContext);
 
   const onFieldChange = (e) => {
     setCommentText(e.target.value);
   };
+  console.log('text', commentText)
 
   const onNewCommentFormSubmit = (e) => {
     e.preventDefault();
@@ -17,21 +19,26 @@ const CommentForm = (props) => {
     let requestBody = {};
 
     const text = document.getElementById("text");
-    const validComment = true;
+    let validComment = true;
+    console.log('text', commentText)
 
-    if (commentText.length === 0 || commentText.length > 50) {
+    if (commentText.length === 0) {
+      console.log('here')
       text.style.borderColor = "red";
+      setShowErrorMessage(true);
       validComment = false;
     }
-
+    console.log(validComment)
     if (validComment === true) {
       requestBody["user_id"] = userId;
       requestBody["comment_text"] = commentText;
       requestBody["post_id"] = props.post_id;
-
+      console.log(requestBody)
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}/comment`, [requestBody])
-        .then((response) => {})
+        .post(`${process.env.REACT_APP_BACKEND_URL}/newcomment`, [requestBody])
+        .then((response) => {
+
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -39,6 +46,9 @@ const CommentForm = (props) => {
   };
   return (
     <form className="comment-form">
+      <div className ='error-message-container'>
+        {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+      </div>
       <input
         id="text"
         minLength={1}

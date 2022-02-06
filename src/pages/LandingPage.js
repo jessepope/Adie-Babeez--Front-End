@@ -1,7 +1,5 @@
 import LoginForm from '../components/LoginForm'
 import './LandingPage.css'
-import { useNavigate } from 'react-router-dom';
-import AppContext from "../AppContext";
 
 const LandingPage = (props) => {
 

@@ -6,6 +6,8 @@ import AppContext from "../AppContext"
 
 function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
 
@@ -18,29 +20,22 @@ function LoginForm(props) {
 
   const onLoginFormSubmit = (e) => {
     e.preventDefault();
-  
-    // /*We are going into the DOM taking specific element which is the GET element by ID we wew taking that element and bringing it into our function as a local varible so we can do things with it.*/
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-
     let validEmail = true;
     let validPassword = true;
-    let showErrorMessage = false;
+  
     if (formField.email.length === 0) {
-
       email.style.borderColor = "red";
-      showErrorMessage = true;
+      setShowErrorMessage(true);
       validEmail = false;
     }
     if (formField.password.length === 0) {
       password.style.borderColor = "red";
-      showErrorMessage = true;
+      setShowErrorMessage(true);
       validPassword = false;
     }
-    // let errorMessage = <p></p>;
-    // if (showErrorMessage === true ) {
-    //   errorMessage = <p className="error-message"> Error Message </p>;
-    // };
+
     if (validEmail === true && validPassword === true) {
       console.log(formField);
       axios
@@ -48,7 +43,6 @@ function LoginForm(props) {
         .then((response) => {
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
-          // navigate seems to be really slow? Maybe we can try to use something else, like Link?
         })
         .catch((err) => {
           console.log(err);
@@ -62,7 +56,9 @@ function LoginForm(props) {
 
   return (
     <form className="login-form" onSubmit={onLoginFormSubmit}>
-      <div className ='error-message-container'></div>
+      <div className ='error-message-container'>
+        {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+      </div>
       <input
         id="email"
         minLength={1}
