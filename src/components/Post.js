@@ -4,15 +4,15 @@ import "./Post.css";
 import { Link } from "react-router-dom";
 import AppContext from "../AppContext";
 import { useState, useContext, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const Post = (props) => {
   // state variable to indicate whether you can see the form or not
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comments, setComments] = useState(props.comments);
   const [commentComponents, setCommentComponents] = useState([]);
-  console.log(comments)
-  console.log('commentComponents',commentComponents)
+  console.log(comments);
+  console.log("commentComponents", commentComponents);
   const myContext = useContext(AppContext);
   const user = myContext.userVariable;
   const user_id = user.user_id;
@@ -57,18 +57,20 @@ const Post = (props) => {
         return (
           <Comment
             text={comment.text}
-            key={comment.id}
+            key={
+              comment.comment_id
+            } /* changed by Elly from id to comment_id to solve undefined key error */
             username={comment.username}
             comment_id={comment.comment_id}
             onDeleteClick={deleteComment}
             user_id={comment.user_id}
           />
         );
-    });
-    
-    setCommentComponents(commentComponents);
-  }
-  }, [comments])
+      });
+
+      setCommentComponents(commentComponents);
+    }
+  }, [comments]);
 
   // when comment button is clicked, display comment form
   const submitCommentForm = () => {
@@ -89,7 +91,11 @@ const Post = (props) => {
     <div>
       <div className="post-border">
         <div>
-          <Link className="profile-link" to={`/profile/${props.user_id}`} state={{ user: `${props.user_id}` }}>
+          <Link
+            className="profile-link"
+            to={`/profile/${props.user_id}`}
+            state={{ user: `${props.user_id}` }}
+          >
             {props.username}
           </Link>
         </div>
@@ -119,7 +125,7 @@ const Post = (props) => {
         <div className="comment-section">
           {/* conditionally rendered variable: will hold comments if they exist or be null */}
           comment section
-          {commentComponents ? commentComponents : null} 
+          {commentComponents ? commentComponents : null}
         </div>
       </div>
     </div>

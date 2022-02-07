@@ -54,8 +54,15 @@ function SignUpForm(props) {
       secret: formField.password,
       email: formField.email,
     };
-    let config = { "PRIVATE-KEY": process.env.REACT_APP_CHAT_ENGINE_KEY };
+    let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
+    let config = {
+      headers: {
+        "PRIVATE-KEY": env_key,
+      },
+      data: data,
+    };
     console.log("config", config);
+
     if (validData === true) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
@@ -67,10 +74,12 @@ function SignUpForm(props) {
           console.log(err);
         });
       axios
-        .post("https://api.chatengine.io/users/", data, config)
-        .then()
+        .post("https://api.chatengine.io/users/", config)
+        .then(() => {
+          console.log("successfully created a user on ChatEngine");
+        })
         .catch((err) => {
-          console.log(err);
+          console.log("fail to create a user on ChatEngine");
         });
     }
   };
