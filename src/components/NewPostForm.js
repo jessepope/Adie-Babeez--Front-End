@@ -58,7 +58,7 @@ function NewPostForm(props) {
     <div>
       <form className="new-post-form" onSubmit={onNewPostFormSubmit}>
       <div className ='error-message-container'>
-        {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+        {showErrorMessage ? <p className="error-message"> Title & Text are required. </p> : null}
       </div>
         <input
           id="title"

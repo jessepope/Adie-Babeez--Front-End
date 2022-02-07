@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SignUpForm.css";
@@ -18,7 +18,6 @@ function SignUpForm(props) {
     campus: "",
     bio: "",
   });
-  
 
   const onFieldChange = (e) => {
     setFormField({
@@ -50,6 +49,13 @@ function SignUpForm(props) {
       setShowErrorMessage(true);
       validData = false;
     }
+    let data = {
+      username: formField.username,
+      secret: formField.password,
+      email: formField.email,
+    };
+    let config = { "PRIVATE-KEY": process.env.REACT_APP_CHAT_ENGINE_KEY };
+    console.log("config", config);
     if (validData === true) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
@@ -57,6 +63,12 @@ function SignUpForm(props) {
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
         })
+        .catch((err) => {
+          console.log(err);
+        });
+      axios
+        .post("https://api.chatengine.io/users/", data, config)
+        .then()
         .catch((err) => {
           console.log(err);
         });
@@ -71,8 +83,13 @@ function SignUpForm(props) {
           Please complete the form below. Username, email, and password are
           required fields.
         </p>
-        <div className ='error-message-container'>
-          {showErrorMessage ? <p className="error-message"> Error Message </p> : null}
+        <div className="error-message-container">
+          {showErrorMessage ? (
+            <p className="error-message">
+              {" "}
+              Username Email and Password are required.{" "}
+            </p>
+          ) : null}
         </div>
         <div className="sign-up-inputs">
           <input
@@ -126,7 +143,6 @@ function SignUpForm(props) {
             placeholder="class name"
             onChange={onFieldChange}
           ></input>
-      
           <input
             id="campus"
             maxLength={50}
@@ -134,8 +150,7 @@ function SignUpForm(props) {
             value={formField.campus}
             placeholder="campus"
             onChange={onFieldChange}
-          ></input>
-          {" "}
+          ></input>{" "}
           <input
             id="bio"
             maxLength={50}
