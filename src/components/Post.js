@@ -22,7 +22,7 @@ const Post = (props) => {
     if (user_id === props.user_id) {
       deleteButton = (
         <button
-          className="Button"
+          className="button"
           id="delete"
           onClick={() => props.onDeleteClick(props)}
         >
