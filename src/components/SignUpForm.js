@@ -55,12 +55,10 @@ function SignUpForm(props) {
       email: formField.email,
     };
     let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
-    let private_key_test = "{{2f76d7de-61bc-4ac0-9405-a2e54b026453}}";
     let config = {
       headers: {
-        "PRIVATE-KEY": private_key_test,
+        "PRIVATE-KEY": env_key,
       },
-      // data: data,
     };
     console.log("config", config);
 
