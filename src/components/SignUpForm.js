@@ -59,7 +59,6 @@ function SignUpForm(props) {
       headers: {
         "PRIVATE-KEY": env_key,
       },
-      data: data,
     };
     console.log("config", config);
 
@@ -74,7 +73,7 @@ function SignUpForm(props) {
           console.log(err);
         });
       axios
-        .post("https://api.chatengine.io/users/", config)
+        .post("https://api.chatengine.io/users/", data, config)
         .then(() => {
           console.log("successfully created a user on ChatEngine");
         })
