@@ -1,7 +1,7 @@
 .nav-container {
     display: grid;
     grid-row-gap: 50px; 
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     background-color: rgb(97, 198, 172);
   }
   

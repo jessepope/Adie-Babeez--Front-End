@@ -17,7 +17,7 @@ const Comment = (props) => {
           id="delete"
           onClick={() => props.onDeleteClick(props.comment_id)}
         >
-          &#x274c;
+          &#10062;
         </button>
       );
     }

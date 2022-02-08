@@ -26,7 +26,8 @@ const Post = (props) => {
           id="delete"
           onClick={() => props.onDeleteClick(props)}
         >
-          &#x274c;
+         &#10062;
+
         </button>
       );
     }

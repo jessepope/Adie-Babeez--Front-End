@@ -68,10 +68,10 @@ const ProfilePage = (props) => {
       <NavBar />
       <div className="profile-container">
         <div className='edit-profile'>
-          {userSelf ? <button onClick={editProfile}>Edit</button> : null}
+          {userSelf ? <button className="button" onClick={editProfile}>Edit</button> : null}
         </div>
         <div className='delete-profile'>
-          {userSelf ? <button onClick={deleteProfile}>DeleteProfile</button> : null}
+          {userSelf ? <button className="button" onClick={deleteProfile}>DeleteProfile</button> : null}
         </div>
         <div> {deleteMessage ? deleteMessage : null}</div>
         <div className="user-email">{userInfo.email}</div>
