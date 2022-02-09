@@ -16,9 +16,9 @@
 
 .title2 {
     text-align: center;
-    color: rgb(97, 198, 172);
+    color:rgb(221, 117, 212);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .text2{
@@ -26,14 +26,27 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .comment-section{
     background-color: rgb(97, 198, 172, 0.6);
     margin: 8px;
     padding:15px;
+    border-radius: 10px;
+
 }
 .comment-section-hdr{
-    margin-bottom:8px;
+    margin-bottom:20px;
     margin-top:auto;
     font-weight: bold;
 
+}
+.spacing{
+    padding: 10px;
+    margin: 15px;
+}
+
+.profile-link{
+    padding-top:10px;
+    padding-left: 10px;
+    padding-right:10px;
 }
