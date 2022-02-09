@@ -74,8 +74,8 @@ function SignUpForm(props) {
         });
       axios
         .post("https://api.chatengine.io/users/", data, config)
-        .then(() => {
-          console.log("successfully created a user on ChatEngine");
+        .then((response) => {
+          console.log("response from ChatEngine", response);
         })
         .catch((err) => {
           console.log("fail to create a user on ChatEngine");
