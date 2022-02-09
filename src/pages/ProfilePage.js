@@ -137,6 +137,14 @@ const ProfilePage = (props) => {
       axios
       .put(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${userId}`, [formField])
       .then(() => {
+        axios
+        .post(`https://api.chatengine.io/users/${chatId}`, config)
+        .then(() => {
+
+        })
+        .catch((err) => {
+          console.log('Chat Engine user not updated', err)
+        })
         navigate(`/"/profile/${userId}"`);
       })
       .catch((err) => {
