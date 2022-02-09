@@ -8,19 +8,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const ProfilePage = (props) => {
   const myContext = useContext(AppContext);
-  console.log('user context', myContext.userVariable)
-
   const userId = myContext.userVariable.user_id;
-  console.log('user_id', userId)
   const [userInfo, setUserInfo] = useState({})
   
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = location.state;
-  console.log('user', user);
-
   const [userSelf, setUserSelf] = useState(false);
   let deleteMessage = null;
+  
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${user}`)
