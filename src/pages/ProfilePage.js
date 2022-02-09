@@ -7,6 +7,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ProfilePage = (props) => {
+  // STATE VARIABLES
   const myContext = useContext(AppContext);
   const userId = myContext.userVariable.user_id;
   const [userInfo, setUserInfo] = useState({})
@@ -20,14 +21,14 @@ const ProfilePage = (props) => {
   const [deleteMessage,setDeleteMessage] = useState(null);
   const [editProfileStatus, setEditProfileStatus] = useState(false);
   const [formField, setFormField] = useState({
-    username: "",
-    email: "",
-    password: "",
-    pronouns: "",
-    location: "",
-    class_name: "",
-    campus: "",
-    bio: "",
+    username: userInfo.username,
+    email: userInfo.email,
+    password: userInfo.email,
+    pronouns: userInfo.email,
+    location: userInfo.email,
+    class_name: userInfo.email,
+    campus: userInfo.email,
+    bio: userInfo.email,
   });
 
   useEffect(() => {
@@ -80,7 +81,10 @@ const ProfilePage = (props) => {
 
     const editProfile = () => {
       setEditProfileStatus(true);
-      console.log('edit')
+    }
+
+    const cancelEditProfile = () => {
+      setEditProfileStatus(false);
     }
 
     const editProfileSubmit = (e) => {
@@ -120,15 +124,22 @@ const ProfilePage = (props) => {
     }
 
   const profileInfo =  
-    <div id="profile- info">
-      <p id="user-email">{userInfo.email}</p>
-      <p id="user-pw">{userInfo.password}</p>
-      <p id="user-name">{userInfo.username}</p>
-      <p id="user-bio">{userInfo.bio}</p>
-      <p id="user-post">{userInfo.posts}</p>
-      <p id="user-campus">{userInfo.campus}</p>
-      <p id="user-class-name">{userInfo.class_name}</p>
-      <p id="user-pronouns">{userInfo.pronouns}</p>
+    <div id="profile-display">
+      <div id="profile-info">
+        <p id="user-email">username: {userInfo.email}</p>
+        <p id="user-name">email: {userInfo.username}</p>
+      {userInfo.bio ? <p id="user-bio">bio: {userInfo.bio}</p> : null}
+        {userInfo.posts ? <p id="user-posts">posts: {userInfo.posts}</p> : null}
+        {userInfo.campus ? <p id="user-campus">campus: {userInfo.campus}</p> : null}
+        {userInfo.location ? <p id="user-bio">location: {userInfo.location}</p> : null}
+        {userInfo.class_name ? <p id="user-class-name">class name: {userInfo.class_name}</p> : null}
+        {userInfo.pronouns ? <p id="user-pronouns">pronouns: {userInfo.pronouns}</p> : null}
+      </div>
+      <div id="profile-buttons"> 
+        {deleteMessage ? deleteMessage : null}
+        {userSelf ? <button className="button" onClick={editProfile}>Edit Profile</button> : null}
+        {userSelf ? <button className="button" onClick={deleteProfile}>Delete Profile</button> : null}
+      </div>
     </div>;
 
   const profileEditForm = 
@@ -141,95 +152,117 @@ const ProfilePage = (props) => {
             </p>
           ) : null}
       </div>
-      <input
-        id="username"
-        minLength={1}
-        maxLength={80}
-        name="username"
-        value={formField.username}
-        placeholder="username"
-        onChange={onFieldChange}
-      ></input>{" "}
-      <input
-        id="email"
-        minLength={1}
-        maxLength={80}
-        name="email"
-        value={formField.email}
-        placeholder="email"
-        onChange={onFieldChange}
-      ></input>{" "}
-      <input
-        id="password"
-        minLength={1}
-        maxLength={50}
-        name="password"
-        value={formField.password}
-        placeholder="password"
-        onChange={onFieldChange}
-      ></input>{" "}
-      <input
-        id="pronouns"
-        maxLength={50}
-        name="pronouns"
-        value={formField.pronouns}
-        placeholder="pronouns"
-        onChange={onFieldChange}
-      ></input>{" "}
-      <input
-        id="location"
-        maxLength={50}
-        name="location"
-        value={formField.location}
-        placeholder="city and state"
-        onChange={onFieldChange}
-      ></input>{" "}
+      <div className="edit-form-field">
+        <p>username:</p>
+        <input
+          id="username"
+          minLength={1}
+          maxLength={80}
+          name="username"
+          value={formField.username}
+          placeholder={userInfo.username}
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div className="edit-form-field">
+        <p>email:</p>
+        <input
+          id="email"
+          minLength={1}
+          maxLength={80}
+          name="email"
+          value={formField.email}
+          placeholder={userInfo.email}
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div className="edit-form-field">
+        <p>password:</p>
+        <input
+          id="password"
+          minLength={1}
+          maxLength={50}
+          name="password"
+          value={formField.password}
+          placeholder="password"
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div className="edit-form-field">
+        <p>pronouns:</p>
+        <input
+          id="pronouns"
+          maxLength={50}
+          name="pronouns"
+          value={formField.pronouns}
+          placeholder={userInfo.pronouns ? userInfo.pronouns : "pronouns"}
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div className="edit-form-field">
+        <p>location:</p>
+        <input
+          id="location"
+          maxLength={50}
+          name="location"
+          value={formField.location}
+          placeholder= {userInfo.location ? userInfo.location : "location"}
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div className="edit-form-field">
+      <p>class name:</p>
       <input
         id="className"
         maxLength={50}
         name="className"
         value={formField.className}
-        placeholder="class name"
+        placeholder={userInfo.class_name ? userInfo.class_name : "class name"}
         onChange={onFieldChange}
       ></input>
-      <input
-        id="campus"
-        maxLength={50}
-        name="campus"
-        value={formField.campus}
-        placeholder="campus"
-        onChange={onFieldChange}
-      ></input>{" "}
-      <input
-        id="bio"
-        maxLength={50}
-        name="bio"
-        value={formField.bio}
-        placeholder="bio"
-        onChange={onFieldChange}
-      ></input>
-      <input id="save-edit-profile-button" type="submit" value="Save Profile" />
+      </div>
+      <div className="edit-form-field">
+        <p>campus:</p>
+        <input
+          id="campus"
+          maxLength={50}
+          name="campus"
+          value={formField.campus}
+          placeholder={userInfo.campus ? userInfo.campus : "campus"}
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div className="edit-form-field">
+        <p>bio:</p>
+        <input
+          id="bio"
+          maxLength={50}
+          name="bio"
+          value={formField.bio}
+          placeholder={userInfo.bio ? userInfo.bio : "bio"}
+          onChange={onFieldChange}
+        ></input>
+      </div>
+      <div id="edit-form-buttons">
+        <button className="button" id="save-edit-profile-button" type="submit">Save Profile</button>
+        <button className="button" id="cancel-edit-profile-button" onClick={cancelEditProfile}>Cancel</button>
+      </div>
     </form>;
-
-  console.log('edit status', editProfileStatus)
-  console.log('edit form', profileEditForm)
-  console.lof('profileInfo', profileInfo)
 
   return (
     <div id="profile-page">
       <NavBar />
       <div className="profile-container">
-        <div id="profile-buttons">
-          <div> {deleteMessage ? deleteMessage : null}</div>
-          <div id='edit-profile'>
-            {userSelf ? <button className="button" onClick={editProfile}>Edit</button> : null}
-          </div>
-          <div id='delete-profile'>
-            {userSelf ? <button className="button" onClick={deleteProfile}>DeleteProfile</button> : null}
-          </div>
+        <div id="profile">
+          {editProfileStatus ? profileEditForm : profileInfo}
         </div>
-        {editProfileStatus ? {profileEditForm} : {profileInfo}}
       </div>
+        {/* <div id="profile-buttons">
+          <div> {deleteMessage ? deleteMessage : null}</div>
+            {userSelf ? <button className="button" onClick={editProfile}>Edit Profile</button> : null}
+            {userSelf ? <button className="button" onClick={deleteProfile}>Delete Profile</button> : null}
+          </div>
+      </div> */}
       <FooterEachPage />
     </div>
   );

@@ -1,19 +1,52 @@
 .profile-page {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 .profile-container{
-    display:flex;
-    flex-direction:column;
-    align-items: center;
+    /* display: grid; */
+    /* flex-direction:row; */
+    /* grid-template-columns: auto, auto; */
     background-color:pink;
-    margin-top:35px;
-    margin-bottom:35px;
-    margin-left: 550px;
-    margin-right: 550px;
-    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     box-sizing: border-box;
     box-shadow: 5px 10px;
     width: 400px;
+}
+/* #profile-info {
+    display:flex;
+    flex-direction: column;
+    background-color:pink;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* margin-top: 20px;
+    width: 400px;
+} */ 
+#profile-info p {
+    margin-left: 15px;
+}
+
+#profile-buttons {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.edit-form-field {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+#edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    /* aligning input boxes to the right */
+}
+
+#edit-form-buttons {
+    display: block;
+    margin: auto;
 }

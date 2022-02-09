@@ -49,7 +49,7 @@ function SignUpForm(props) {
       setShowErrorMessage(true);
       validData = false;
     }
-    
+
     let data = {
       username: formField.username,
       secret: formField.password,
@@ -74,7 +74,15 @@ function SignUpForm(props) {
         });
       axios
         .post("https://api.chatengine.io/users/", data, config)
-        .then(() => {
+        // catch response from chat engine and store chat engine user id in user model
+        .then((response) => {
+          const user_id_chatengine = response["id"];
+          const request_body = { user_id_chatengine: user_id_chatengine };
+          const user_id = myContext.userVariable.user_id;
+          axios.put(
+            `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
+            [request_body]
+          );
           console.log("successfully created a user on ChatEngine");
         })
         .catch((err) => {
