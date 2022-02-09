@@ -13,7 +13,7 @@ function SignUpForm(props) {
     email: "",
     password: "",
     pronouns: "",
-    // location: "",
+    location: "",
     class_name: "",
     campus: "",
     bio: "",
@@ -49,6 +49,7 @@ function SignUpForm(props) {
       setShowErrorMessage(true);
       validData = false;
     }
+    
     let data = {
       username: formField.username,
       secret: formField.password,
@@ -60,7 +61,6 @@ function SignUpForm(props) {
         "PRIVATE-KEY": env_key,
       },
     };
-    console.log("config", config);
 
     if (validData === true) {
       axios
@@ -78,7 +78,7 @@ function SignUpForm(props) {
           console.log("successfully created a user on ChatEngine");
         })
         .catch((err) => {
-          console.log("fail to create a user on ChatEngine");
+          console.log("failed to create a user on ChatEngine");
         });
     }
   };
