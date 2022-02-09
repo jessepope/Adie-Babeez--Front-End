@@ -2,5 +2,12 @@
     color:rgb(252, 179, 70);
     font-weight: bold;
     font-size: 20px;
+
     
+}
+.comment{
+    display:flex;
+    flex-direction:row;
+    border:2px,solid black;
+
 }

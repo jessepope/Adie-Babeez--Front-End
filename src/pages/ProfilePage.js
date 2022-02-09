@@ -15,8 +15,9 @@ const ProfilePage = (props) => {
   const location = useLocation();
   const { user } = location.state;
   const [userSelf, setUserSelf] = useState(false);
-  let deleteMessage = null;
-  
+
+  const [deleteMessage,setDeleteMessage] = useState(null);
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${user}`)
@@ -45,18 +46,18 @@ const ProfilePage = (props) => {
       });
     }
     const cancelDelete = ()=>{
-      deleteMessage = null;
+      setDeleteMessage(null)
     }
     const deleteProfile = () => {
-      deleteMessage= 
+      setDeleteMessage( 
       <div>
-        <p> Are you sure you want to delete your profile? </p>
+        <p className ="error-message"> Are you sure you want to delete your profile? </p>
         <div>
-          <button onClick={confirmDeleteFunc}> Yes</button> 
-          <button onClick={cancelDelete}> Cancel</button> 
+          <button className="button" onClick={confirmDeleteFunc}> Yes</button> 
+          <button className="button" onClick={cancelDelete}> Cancel</button> 
         </div>
-      </div>;
-    return deleteMessage;
+      </div>);
+    
 
     }
   return (
