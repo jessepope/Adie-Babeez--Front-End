@@ -25,16 +25,13 @@ const Comment = (props) => {
   };
   return (
     <div className="comment">
-      <div className="comment-auth">
+      <div className="comment-user">
         <Link className='profile-link' to={`/profile/${props.username}`} state={{ user: `${props.user_id}` }}>{props.username}
         </Link>
       </div>
       <div className="text">{props.text}</div>
       <div className="comment-buttons">
       {checkUser(props)}
-        {/* <button className="delete" onClick={() => props.onDeleteComment(props.comment_id)}>
-          delete
-        </button> */}
       </div>
     </div>
   );

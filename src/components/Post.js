@@ -125,7 +125,7 @@ const Post = (props) => {
         {commentForm}
         <div className="comment-section">
           {/* conditionally rendered variable: will hold comments if they exist or be null */}
-          comment section
+          <p className="comment-section-hdr">Comments:</p>
           {commentComponents ? commentComponents : null}
         </div>
       </div>
