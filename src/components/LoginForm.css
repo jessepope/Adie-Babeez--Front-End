@@ -6,7 +6,11 @@
 
 .button {
     background-color: rgb(97, 198, 172);
-    
+
+}
+.button-like{
+    font-size: 19px;
+    background-color: rgb(97, 198, 172);
 }
 
 .button:hover {
