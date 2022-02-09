@@ -46,6 +46,7 @@ function LoginForm(props) {
         })
         .catch((err) => {
           console.log(err);
+          // if 404, show error message "incorrect email or password"
         });
     }
   };

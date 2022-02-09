@@ -7,9 +7,10 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ProfilePage = (props) => {
-  // STATE VARIABLES
+// STATE VARIABLES
   const myContext = useContext(AppContext);
   const userId = myContext.userVariable.user_id;
+  const chatId = myContext.userVariable.user_id_chatengine;
   const [userInfo, setUserInfo] = useState({})
   
   const navigate = useNavigate();
@@ -31,6 +32,8 @@ const ProfilePage = (props) => {
     bio: userInfo.email,
   });
 
+    console.log('self', userSelf)
+// Initial Render
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${user}`)
@@ -45,10 +48,28 @@ const ProfilePage = (props) => {
       });
     }, []);
 
+// CHAT ENGINE API
+  let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
+  let config = {
+    headers: {
+      "PRIVATE-KEY": env_key,
+    },
+  };
+
+// DELETE USER
     const confirmDeleteFunc = () => {
       axios
       .delete(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${userId}`)
-      .then(() => {
+      .then((response) => {
+      // delete user in chat engine API
+        axios
+        .delete((`https://api.chatengine.io/users/${chatId}`, config))
+        .then(() => {
+          console.log('Successfully deleted Chat Engine user')
+        })
+        .catch((err) => {
+          console.log(err)
+        });
         myContext.setCurrentUser({});
         navigate(`/`);
       })
@@ -63,7 +84,7 @@ const ProfilePage = (props) => {
     
     const deleteProfile = () => {
       setDeleteMessage( 
-      <div>
+      <div id="delete-profile-message">
         <p className="error-message"> Are you sure you want to delete your profile? </p>
         <div>
           <button className="button" onClick={confirmDeleteFunc}> Yes</button> 
@@ -72,6 +93,7 @@ const ProfilePage = (props) => {
       </div>);
     }
 
+// EDIT PROFILE
     const onFieldChange = (e) => {
       setFormField({
         ...formField,
@@ -122,6 +144,11 @@ const ProfilePage = (props) => {
       });
     };
     }
+  const profileButtons = 
+  <div id="profile-buttons"> 
+  {userSelf ? <button className="button" onClick={editProfile}>Edit Profile</button> : null}
+  {userSelf ? <button className="button" onClick={deleteProfile}>Delete Profile</button> : null}
+  </div>
 
   const profileInfo =  
     <div id="profile-display">
@@ -135,11 +162,7 @@ const ProfilePage = (props) => {
         {userInfo.class_name ? <p id="user-class-name">class name: {userInfo.class_name}</p> : null}
         {userInfo.pronouns ? <p id="user-pronouns">pronouns: {userInfo.pronouns}</p> : null}
       </div>
-      <div id="profile-buttons"> 
-        {deleteMessage ? deleteMessage : null}
-        {userSelf ? <button className="button" onClick={editProfile}>Edit Profile</button> : null}
-        {userSelf ? <button className="button" onClick={deleteProfile}>Delete Profile</button> : null}
-      </div>
+      {deleteMessage ? deleteMessage : profileButtons}
     </div>;
 
   const profileEditForm = 
@@ -257,12 +280,6 @@ const ProfilePage = (props) => {
           {editProfileStatus ? profileEditForm : profileInfo}
         </div>
       </div>
-        {/* <div id="profile-buttons">
-          <div> {deleteMessage ? deleteMessage : null}</div>
-            {userSelf ? <button className="button" onClick={editProfile}>Edit Profile</button> : null}
-            {userSelf ? <button className="button" onClick={deleteProfile}>Delete Profile</button> : null}
-          </div>
-      </div> */}
       <FooterEachPage />
     </div>
   );

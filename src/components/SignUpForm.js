@@ -6,6 +6,7 @@ import AppContext from "../AppContext";
 
 function SignUpForm(props) {
   let navigate = useNavigate();
+// STATE VARIABLES
   const myContext = useContext(AppContext);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [formField, setFormField] = useState({
@@ -19,6 +20,7 @@ function SignUpForm(props) {
     bio: "",
   });
 
+// FORM SUBMISSION
   const onFieldChange = (e) => {
     setFormField({
       ...formField,
@@ -63,30 +65,40 @@ function SignUpForm(props) {
     };
 
     if (validData === true) {
+      // create user
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
         .then((response) => {
+          // create user in chat engine API
+          axios
+          .post("https://api.chatengine.io/users/", data, config)
+          .then((response) => {
+            console.log("successfully created a user on ChatEngine");
+            const user_id_chatengine = response["id"];
+            const request_body = { user_id_chatengine: user_id_chatengine };
+            const user_id = myContext.userVariable.user_id;
+          // update db user to include Chat Engine user id
+            axios
+            .put(
+              `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
+              [request_body]
+            )
+            .then((response) => {
+              myContext.setCurrentUser(response.data);
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+          })
+          .catch((err) => {
+            console.log(err);
+            console.log("failed to create a user on ChatEngine");
+          });
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
         })
         .catch((err) => {
           console.log(err);
-        });
-      axios
-        .post("https://api.chatengine.io/users/", data, config)
-        // catch response from chat engine and store chat engine user id in user model
-        .then((response) => {
-          const user_id_chatengine = response["id"];
-          const request_body = { user_id_chatengine: user_id_chatengine };
-          const user_id = myContext.userVariable.user_id;
-          axios.put(
-            `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
-            [request_body]
-          );
-          console.log("successfully created a user on ChatEngine");
-        })
-        .catch((err) => {
-          console.log("failed to create a user on ChatEngine");
         });
     }
   };
