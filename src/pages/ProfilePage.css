@@ -1,8 +1,12 @@
 .profile-page {
     height: 100vh;
+    background-image:url(../images/hpf.png);
+    background-size:cover;
+    background-position: 0%;
+    
 }
 .profile-container{
-    background-color:pink;
+    background-color:rgb(252, 179, 70,0.8);
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
