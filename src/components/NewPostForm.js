@@ -5,11 +5,13 @@ import "./NewPostForm.css";
 import AppContext from "../AppContext"
 
 function NewPostForm(props) {
+  // STATE VARIABLES
+  const myContext = useContext(AppContext);
   const [formField, setFormField] = useState({ title: "", text: "" });
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   let navigate = useNavigate();
-  const myContext = useContext(AppContext);
-
+  
+  // FORM SUBMIT
   const onFieldChange = (e) => {
     setFormField({
       ...formField,
@@ -52,7 +54,6 @@ function NewPostForm(props) {
         });
     }
   };
-
 
   return (
     <div>

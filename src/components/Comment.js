@@ -4,10 +4,12 @@ import AppContext from "../AppContext";
 import { useContext } from 'react';
 
 const Comment = (props) => {
-  console.log('comment props', props)
+  // STATE VARIABLES
   const myContext = useContext(AppContext);
   const user = myContext.userVariable;
   const user_id = user.user_id;
+
+  // CHECK IF USER IS SELF
   const checkUser = (props) => {
     let deleteButton = null;
     if (user_id === props.user_id) {
@@ -16,13 +18,13 @@ const Comment = (props) => {
           className="button"
           id="delete"
           onClick={() => props.onDeleteClick(props.comment_id)}
-        >
-          &#10062;
+        >&#10062;
         </button>
       );
     }
     return deleteButton;
   };
+  
   return (
     <div className="comment">
       <div className="comment-user">

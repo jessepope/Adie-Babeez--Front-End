@@ -8,6 +8,8 @@ function SignUpForm(props) {
   let navigate = useNavigate();
   // STATE VARIABLES
   const myContext = useContext(AppContext);
+  console.log("myContext", myContext);
+  console.log("set user", myContext.setCurrentUser);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [formField, setFormField] = useState({
     username: "",
@@ -51,7 +53,7 @@ function SignUpForm(props) {
       setShowErrorMessage(true);
       validData = false;
     }
-
+    // chat engine API config
     let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
     let config = {
       headers: {
@@ -64,17 +66,18 @@ function SignUpForm(props) {
       secret: formField.password,
       email: formField.email,
     };
-
+    // api calls
     if (validData === true) {
-      // create user
+      // create user in adie-babbeez db
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
         .then((response) => {
-          // create user in chat engine API
+          // create user in chat engine db
           console.log("api response", response.data);
           myContext.setCurrentUser(response.data);
+          const user_id = response.data.user_id;
           console.log("myContext-currentUser", myContext.userVariable); // undefined
-          const user_id = myContext.userVariable.user_id;
+          // const user_id = myContext.userVariable.user_id;
           console.log("user_id", user_id); // undefined
           console.log("successfully created user in AB_DB");
 

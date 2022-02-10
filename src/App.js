@@ -18,7 +18,7 @@ function App() {
       userVariable: currentUser,
       setCurrentUser,
     };
-    console.log(currentUser)
+    // console.log('current user state', currentUser)
 
   return (
     <AppContext.Provider value={userSettings}>
@@ -49,7 +49,6 @@ function App() {
                 path={"/profile/:id"}
                 element={<ProfilePage />}
               />
-           
               <Route
                 path={"/inbox/:id"}
                 element={<InboxPage />}

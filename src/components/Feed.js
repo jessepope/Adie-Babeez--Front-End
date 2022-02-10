@@ -1,30 +1,32 @@
 import Post from "./Post";
-import Comment from "./Comment"
+// import Comment from "./Comment"
 import "./Feed.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import AppContext from "../AppContext";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 const Feed = () => {
+  // STATE VARIABLES
   const myContext = useContext(AppContext);
   const user = myContext.userVariable;
 
   const [posts, setPosts] = useState([]);
   const [postComponents, setPostComponents] = useState([]);
 
+  // INITIAL RENDER
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/posts/all`)
       .then((response) => {
-        console.log("response", response.data);
-        setPosts(response.data);
-        console.log("posts", posts);
-        console.log("components", postComponents);
+        // console.log("response", response.data);
+        // setPosts(response.data);
+        // console.log("posts", posts);
+        // console.log("components", postComponents);
       });
   }, []);
 
-// posts become unordered upon changes
+  // POSTS
   useEffect(() => {
     const likePost = (post_id) => {
       const id = post_id;
@@ -37,7 +39,6 @@ const Feed = () => {
             }
             return post;
           });
-          console.log("newPosts", newPosts);
           setPosts(newPosts);
         })
         .catch((err) => {
@@ -56,7 +57,6 @@ const Feed = () => {
               newPosts.push(post);
             }
           });
-          console.log("newPosts", newPosts);
           setPosts(newPosts);
         })
         .catch((err) => {
@@ -86,7 +86,6 @@ const Feed = () => {
 
   return (
     <div className="feed-container">
-      {/* before displaying post components, sort them but props (props.date_posted, props.campus) */}
       {postComponents ? postComponents : null}
     </div>
   );

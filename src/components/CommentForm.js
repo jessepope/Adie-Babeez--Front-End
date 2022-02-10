@@ -3,15 +3,15 @@ import React, { useState, useContext} from "react";
 import axios from "axios";
 
 const CommentForm = (props) => {
+  // STATE VARIABLES
   const [commentText, setCommentText] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const myContext = useContext(AppContext);
 
+  // FORM SUBMIT
   const onFieldChange = (e) => {
     setCommentText(e.target.value);
   };
-  console.log('text', commentText)
-  console.log('props', props)
 
   const onNewCommentFormSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +24,6 @@ const CommentForm = (props) => {
     console.log('text', commentText)
 
     if (commentText.length === 0) {
-      console.log('here')
       text.style.borderColor = "red";
       setShowErrorMessage(true);
       validComment = false;
@@ -34,7 +33,6 @@ const CommentForm = (props) => {
       requestBody["user_id"] = userId;
       requestBody["text"] = commentText;
       requestBody["post_id"] = props.post_id;
-      console.log(requestBody)
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/comments/newcomment`, [requestBody])
         .then((response) => {
@@ -45,6 +43,8 @@ const CommentForm = (props) => {
         });
     }
   };
+
+  // COMPONENT RENDER
   return (
     <form className="comment-form" onSubmit={onNewCommentFormSubmit}>
       <div className ='error-message-container'>

@@ -4,6 +4,7 @@ import AppContext from "../AppContext";
 import { useContext } from 'react';
 
 const NavBar = () => {
+  // CONTEXT VARIABLES
   const myContext = useContext(AppContext);
   const user_id = myContext.userVariable.user_id;
 
