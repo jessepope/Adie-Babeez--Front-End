@@ -19,7 +19,6 @@ function SignUpForm(props) {
     campus: "",
     bio: "",
   });
-  // const [data, setData] = useState({});
 
   // FORM SUBMISSION
   const onFieldChange = (e) => {
@@ -73,23 +72,22 @@ function SignUpForm(props) {
         .then((response) => {
           // create user in chat engine API
           console.log("api response", response.data);
-          // setData({
-          //   username: response.data.username,
-          //   secret: response.data.password,
-          //   email: response.data.email,
-          // });
-          console.log("data", data);
+          myContext.setCurrentUser(response.data);
+          console.log("myContext-currentUser", myContext.currentUser);
+          const user_id = myContext.userVariable.user_id;
+          console.log("user_id", user_id);
           console.log("successfully created user in AB_DB");
           axios
             .post("https://api.chatengine.io/users/", data, config)
             .then((response) => {
               console.log("successfully created a user on ChatEngine");
-              const user_id_chatengine = response["id"];
+              const user_id_chatengine = response.data.id;
               const request_body = { user_id_chatengine: user_id_chatengine };
-              const user_id = myContext.userVariable.user_id;
+
+              console.log("request body", request_body);
               // update db user to include Chat Engine user id
               axios
-                .put(
+                .patch(
                   `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
                   [request_body]
                 )
