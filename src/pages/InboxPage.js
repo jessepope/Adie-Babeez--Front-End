@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const InboxPage = () => {
   const [username, setUsername] = useState("");
-  // console.log(creds)
+
   function createDirectChat(creds) {
     getOrCreateChat(
       creds,

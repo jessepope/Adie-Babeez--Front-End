@@ -56,7 +56,7 @@ const Post = (props) => {
     if (comments) {
       const commentComponents = comments.map((comment) => {
         return (
-          <Comment
+          <Comment className="spacing"
             text={comment.text}
             key={
               comment.comment_id
@@ -103,7 +103,9 @@ const Post = (props) => {
         <div className="title2">{props.title}</div>
         <div className="text2">{props.text}</div>
         <div className="post-buttons">
-          <div>{props.likes}</div>
+          <button className = "button-like ">
+            {props.likes}
+          </button>
           <button
             className="button"
             id="like-button"
