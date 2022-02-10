@@ -1,13 +1,15 @@
 .nav-container {
     display: grid;
-    grid-row-gap: 50px; 
+    justify-content: center;
     grid-template-columns: auto auto auto auto;
     background-color: rgb(97, 198, 172);
   }
   
 .nav-item {
+    display: flex;
     padding: 15px;
     font-size: 15px;
+    align-content: center;
   }
 
 .nav-item:hover {

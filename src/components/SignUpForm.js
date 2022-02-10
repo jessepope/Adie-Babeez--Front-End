@@ -6,6 +6,7 @@ import AppContext from "../AppContext";
 
 function SignUpForm(props) {
   let navigate = useNavigate();
+  // STATE VARIABLES
   const myContext = useContext(AppContext);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [formField, setFormField] = useState({
@@ -18,7 +19,9 @@ function SignUpForm(props) {
     campus: "",
     bio: "",
   });
+  // const [data, setData] = useState({});
 
+  // FORM SUBMISSION
   const onFieldChange = (e) => {
     setFormField({
       ...formField,
@@ -49,12 +52,7 @@ function SignUpForm(props) {
       setShowErrorMessage(true);
       validData = false;
     }
-    
-    let data = {
-      username: formField.username,
-      secret: formField.password,
-      email: formField.email,
-    };
+
     let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
     let config = {
       headers: {
@@ -62,23 +60,55 @@ function SignUpForm(props) {
       },
     };
 
+    let data = {
+      username: formField.username,
+      secret: formField.password,
+      email: formField.email,
+    };
+
     if (validData === true) {
+      // create user
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
         .then((response) => {
+          // create user in chat engine API
+          console.log("api response", response.data);
+          // setData({
+          //   username: response.data.username,
+          //   secret: response.data.password,
+          //   email: response.data.email,
+          // });
+          console.log("data", data);
+          console.log("successfully created user in AB_DB");
+          axios
+            .post("https://api.chatengine.io/users/", data, config)
+            .then((response) => {
+              console.log("successfully created a user on ChatEngine");
+              const user_id_chatengine = response["id"];
+              const request_body = { user_id_chatengine: user_id_chatengine };
+              const user_id = myContext.userVariable.user_id;
+              // update db user to include Chat Engine user id
+              axios
+                .put(
+                  `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
+                  [request_body]
+                )
+                .then((response) => {
+                  myContext.setCurrentUser(response.data);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log("failed to create a user on ChatEngine");
+            });
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
         })
         .catch((err) => {
           console.log(err);
-        });
-      axios
-        .post("https://api.chatengine.io/users/", data, config)
-        .then((response) => {
-          console.log("response from ChatEngine", response);
-        })
-        .catch((err) => {
-          console.log("failed to create a user on ChatEngine");
         });
     }
   };
