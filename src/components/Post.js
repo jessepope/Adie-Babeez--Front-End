@@ -82,7 +82,7 @@ const Post = (props) => {
 
   let commentForm = null;
   if (showCommentForm === true) {
-    commentForm = <CommentForm post_id={props.post_id} onCancel={onCancel} />;
+    commentForm = <CommentForm comments={comments} setComments={setComments()} post_id={props.post_id} onCancel={onCancel} setShowCommentForm={setShowCommentForm}/>;
   }
 
   return (

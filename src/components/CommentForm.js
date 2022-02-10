@@ -7,6 +7,8 @@ const CommentForm = (props) => {
   const [commentText, setCommentText] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const myContext = useContext(AppContext);
+  console.log('props', props)
+
 
   // FORM SUBMIT
   const onFieldChange = (e) => {
@@ -36,8 +38,15 @@ const CommentForm = (props) => {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/comments/newcomment`, [requestBody])
         .then((response) => {
-
-        })
+          props.setShowCommentForm(false);
+          let newComments = []
+          props.comments.forEach((comment) => {
+              newComments.push(comment);
+            })
+          newComments.push(response.data)
+          console.log('new comments', newComments)
+          props.setComments(newComments)
+          })
         .catch((err) => {
           console.log(err);
         });

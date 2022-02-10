@@ -1,7 +1,7 @@
 import "./InboxPage.css";
 import axios from "axios";
-import NavBar from "../components/NavBar"
-import FooterEachPage from "../components/FooterEachPage"
+import NavBar from "../components/NavBar";
+import FooterEachPage from "../components/FooterEachPage";
 import { ChatEngine, getOrCreateChat } from "react-chat-engine";
 import { useState, useContext } from "react";
 import AppContext from "../AppContext";
@@ -9,8 +9,9 @@ import AppContext from "../AppContext";
 const InboxPage = () => {
   const [username, setUsername] = useState("");
   const myContext = useContext(AppContext);
-  const userId = myContext.userVariable.user_id
-  const userPassword = myContext.userVariable.password
+  const userId = myContext.userVariable.user_id;
+  const userPassword = myContext.userVariable.password;
+  console.log("userId", userId, "password", userPassword);
 
   function createDirectChat(creds) {
     getOrCreateChat(
@@ -33,7 +34,7 @@ const InboxPage = () => {
     );
   }
 
-  console.log('username', username)
+  console.log("username", username);
   return (
     <div id="inbox-page">
       <NavBar />

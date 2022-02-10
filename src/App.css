@@ -11,8 +11,6 @@ body{
 }
 .button {
   background-color: rgb(97, 198, 172);
-  height: 25px;
-  width: 25px;
 }
 .button:hover {
   background-color: white;
