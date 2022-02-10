@@ -19,7 +19,7 @@ function SignUpForm(props) {
     campus: "",
     bio: "",
   });
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
   // FORM SUBMISSION
   const onFieldChange = (e) => {
@@ -60,6 +60,12 @@ function SignUpForm(props) {
       },
     };
 
+    let data = {
+      username: formField.username,
+      secret: formField.password,
+      email: formField.email,
+    };
+
     if (validData === true) {
       // create user
       axios
@@ -67,12 +73,13 @@ function SignUpForm(props) {
         .then((response) => {
           // create user in chat engine API
           console.log("api response", response.data);
-          setData({
-            username: response.data.username,
-            secret: response.data.password,
-            email: response.data.email,
-          });
-          console.log(data);
+          // setData({
+          //   username: response.data.username,
+          //   secret: response.data.password,
+          //   email: response.data.email,
+          // });
+          console.log("data", data);
+          console.log("successfully created user in AB_DB");
           axios
             .post("https://api.chatengine.io/users/", data, config)
             .then((response) => {
