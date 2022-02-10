@@ -4,16 +4,7 @@
     align-items: center;
 }
 
-.button {
-    background-color: rgb(97, 198, 172);
-
-}
 .button-like{
     font-size: 19px;
     background-color: rgb(97, 198, 172);
-}
-
-.button:hover {
-    background-color: white;
-    transform: scale(1.15);
 }

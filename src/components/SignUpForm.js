@@ -54,61 +54,65 @@ function SignUpForm(props) {
       validData = false;
     }
     // chat engine API config
-    let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
-    let config = {
-      headers: {
-        "PRIVATE-KEY": env_key,
-      },
-    };
+    // let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
+    // let config = {
+    //   headers: {
+    //     "PRIVATE-KEY": env_key,
+    //   },
+    // };
 
-    let data = {
-      username: formField.username,
-      secret: formField.password,
-      email: formField.email,
-    };
+    // let data = {
+    //   username: formField.username,
+    //   secret: formField.password,
+    //   email: formField.email,
+    // };
     // api calls
     if (validData === true) {
       // create user in adie-babbeez db
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, [formField])
         .then((response) => {
-          // create user in chat engine db
-          console.log("api response", response.data);
-          myContext.setCurrentUser(response.data);
-          const user_id = response.data.user_id;
-          console.log("myContext-currentUser", myContext.userVariable); // undefined
-          // const user_id = myContext.userVariable.user_id;
-          console.log("user_id", user_id); // undefined
-          console.log("successfully created user in AB_DB");
-
-          axios
-            .post("https://api.chatengine.io/users/", data, config)
-            .then((response) => {
-              console.log("successfully created a user on ChatEngine");
-              const user_id_chatengine = response.data.id;
-              const request_body = { user_id_chatengine: user_id_chatengine };
-
-              console.log("request body", request_body);
-              // update db user to include Chat Engine user id
-              axios
-                .patch(
-                  `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
-                  [request_body]
-                )
-                .then((response) => {
-                  myContext.setCurrentUser(response.data);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            })
-            .catch((err) => {
-              console.log(err);
-              console.log("failed to create a user on ChatEngine");
-            });
+          
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
         })
+          // // create user in chat engine db
+          // console.log("api response", response.data);
+          // myContext.setCurrentUser(response.data);
+          // const user_id = response.data.user_id;
+          // console.log("myContext-currentUser", myContext.userVariable); // undefined
+          // // const user_id = myContext.userVariable.user_id;
+          // console.log("user_id", user_id); // undefined
+          // console.log("successfully created user in AB_DB");
+
+          // axios
+          //   .post("https://api.chatengine.io/users/", data, config)
+          //   .then((response) => {
+          //     console.log("successfully created a user on ChatEngine");
+          //     const user_id_chatengine = response.data.id;
+          //     const request_body = { user_id_chatengine: user_id_chatengine };
+
+          //     console.log("request body", request_body);
+          //     // update db user to include Chat Engine user id
+          //     axios
+          //       .patch(
+          //         `${process.env.REACT_APP_BACKEND_URL}/users/profile/${user_id}`,
+          //         [request_body]
+          //       )
+                // .then((response) => {
+                  // myContext.setCurrentUser(response.data);
+                // // })
+                // .catch((err) => {
+                //   console.log(err);
+                // });
+            // })
+            // .catch((err) => {
+            //   console.log(err);
+            //   console.log("failed to create a user on ChatEngine");
+            // });
+        //   myContext.setCurrentUser(response.data);
+        //   navigate(`/feed`);
+        // })
         .catch((err) => {
           console.log(err);
         });

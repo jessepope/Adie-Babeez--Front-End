@@ -16,9 +16,9 @@ const Comment = (props) => {
       deleteButton = (
         <button
           className="button"
-          id="delete"
+          id="delete-comment-button"
           onClick={() => props.onDeleteClick(props.comment_id)}
-        >&#10062;
+        >
         </button>
       );
     }
@@ -28,11 +28,11 @@ const Comment = (props) => {
   return (
     <div className="comment">
       <div className="comment-user">
-        <Link className='profile-link' to={`/profile/${props.username}`} state={{ user: `${props.user_id}` }}>{props.username}
+        <Link className="comment-user-link" to={`/profile/${props.username}`} state={{ user: `${props.user_id}` }}>{props.username}
         </Link>
       </div>
-      <div className="text">{props.text}</div>
-      <div className="comment-buttons">
+      <div className="commnet-text">{props.text}</div>
+      <div id="comment-buttons">
       {checkUser(props)}
       </div>
     </div>

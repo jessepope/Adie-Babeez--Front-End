@@ -8,17 +8,16 @@ import SignUpPage from "./pages/SignUpPage";
 import NewPostPage from "./pages/NewPostPage";
 import ProfilePage from "./pages/ProfilePage";
 import AppContext from "./AppContext";
-import { ChatEngine } from 'react-chat-engine';
+import { ChatEngine } from "react-chat-engine";
 import InboxPage from "./pages/InboxPage";
 
 function App() {
-  
-    const [currentUser, setCurrentUser] = useState({});
-    const userSettings = {
-      userVariable: currentUser,
-      setCurrentUser,
-    };
-    // console.log('current user state', currentUser)
+  const [currentUser, setCurrentUser] = useState({});
+  const userSettings = {
+    userVariable: currentUser,
+    setCurrentUser,
+  };
+  // console.log('current user state', currentUser)
 
   return (
     <AppContext.Provider value={userSettings}>
@@ -26,33 +25,15 @@ function App() {
         <div className="App">
           <div className="content">
             <Routes>
-              <Route
-                path=""
-                element={<LandingPage />}
-              />
-              <Route
-                path="/signup"
-                element={<SignUpPage />}
-              />
+              <Route path="" element={<LandingPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
 
-              <Route
-                path="/feed"
-                element={<HomePage />}
-              />
+              <Route path="/feed" element={<HomePage />} />
 
-              <Route
-                path="/newpost"
-                element={<NewPostPage />}
-              />
-              
-              <Route
-                path={"/profile/:id"}
-                element={<ProfilePage />}
-              />
-              <Route
-                path={"/inbox/:id"}
-                element={<InboxPage />}
-              />
+              <Route path="/newpost" element={<NewPostPage />} />
+
+              <Route path={"/profile/:id"} element={<ProfilePage />} />
+              <Route path={"/inbox/:id"} element={<InboxPage />} />
             </Routes>
           </div>
         </div>

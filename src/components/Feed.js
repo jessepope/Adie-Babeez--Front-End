@@ -20,7 +20,7 @@ const Feed = () => {
       .get(`${process.env.REACT_APP_BACKEND_URL}/posts/all`)
       .then((response) => {
         // console.log("response", response.data);
-        // setPosts(response.data);
+        setPosts(response.data);
         // console.log("posts", posts);
         // console.log("components", postComponents);
       });

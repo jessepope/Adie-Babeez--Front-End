@@ -24,9 +24,9 @@ const Post = (props) => {
       deleteButton = (
         <button
           className="button"
-          id="delete"
+          id="delete-post-button"
           onClick={() => props.onDeleteClick(props)}
-        >&#10062;
+        >
         </button>
       );
     }
@@ -56,7 +56,7 @@ const Post = (props) => {
     if (comments) {
       const commentComponents = comments.map((comment) => {
         return (
-          <Comment className="spacing"
+          <Comment 
             text={comment.text}
             key={comment.comment_id}
             username={comment.username}
@@ -88,33 +88,35 @@ const Post = (props) => {
   return (
     <div>
       <div className="post-border">
-        <div>
-          <Link
-            className="profile-link"
-            to={`/profile/${props.user_id}`}
-            state={{ user: `${props.user_id}` }}
-          >
-            {props.username}
-          </Link>
-        </div>
-        <div className="title2">{props.title}</div>
-        <div className="text2">{props.text}</div>
-        <div className="post-buttons">
-
-          <button
-            className="button"
-            id="like-button"
-            onClick={() => props.onLikeClick(props.post_id)}
-          >&#129293;{props.likes}
-          </button>
-          <button
-            className="button"
-            id="comment-button"
-            post_id={props.post_id}
-            onClick={submitCommentForm}
-          >&#128172;
-          </button>
-          {checkUser(props)}
+        <Link
+          className="profile-link"
+          to={`/profile/${props.user_id}`}
+          state={{ user: `${props.user_id}` }}
+        >
+          {props.username}
+        </Link>
+        <div className="post-info">
+          <div className="post-title">{props.title}</div>
+          <div className="post-text">{props.text}</div>
+          <div id="post-buttons">
+            <div id="likes-count">
+            {props.likes}
+            </div>
+            <button
+              className="button"
+              id="like-button"
+              onClick={() => props.onLikeClick(props.post_id)}
+            >&#129293;
+            </button>
+            <button
+              className="button"
+              id="comment-button"
+              post_id={props.post_id}
+              onClick={submitCommentForm}
+            >&#128172;
+            </button>
+            {checkUser(props)}
+          </div>
         </div>
         {commentForm}
         <div className="comment-section">
