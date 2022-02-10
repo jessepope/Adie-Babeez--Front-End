@@ -8,10 +8,10 @@ import AppContext from "../AppContext";
 
 const InboxPage = () => {
   const [username, setUsername] = useState("");
-  const myContext = useContext(AppContext);
-  const userId = myContext.userVariable.user_id;
-  const userPassword = myContext.userVariable.password;
-  console.log("userId", userId, "password", userPassword);
+  // const myContext = useContext(AppContext);
+  // const currUsername = myContext.userVariable.username;
+  // const userPassword = myContext.userVariable.password;
+  // console.log("userId", username, "password", userPassword);
 
   function createDirectChat(creds) {
     getOrCreateChat(
@@ -42,7 +42,7 @@ const InboxPage = () => {
         height="100vh"
         projectID={process.env.REACT_APP_CHAT_ENGINE_PROJECT_ID}
         userName="admin"
-        // userName={userId}
+        // userName={currUsername}
         userSecret="adiebabeez"
         // userSecret={userPassword}
         renderNewChatForm={(creds) => renderChatForm(creds)}
