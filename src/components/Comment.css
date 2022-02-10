@@ -10,8 +10,12 @@
     flex-direction:row;
     border:2px,solid black;
 
+
 }
 .text{
-    font-size: 28px;
+    font-size: 24px;
     color:black;
+    border-style:solid;
+    border-color:rgb(221, 117, 212);
+    
 }

@@ -22,7 +22,7 @@
 }
 
 .text2{
-    font-size: 25px;
+    font-size:25px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -36,6 +36,7 @@
 }
 .comment-section-hdr{
     margin-bottom:20px;
+    font-size:18px;
     margin-top:auto;
     font-weight: bold;
 

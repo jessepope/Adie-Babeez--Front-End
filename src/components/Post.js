@@ -103,15 +103,15 @@ const Post = (props) => {
         <div className="title2">{props.title}</div>
         <div className="text2">{props.text}</div>
         <div className="post-buttons">
-          <button className = "button-like ">
-            {props.likes}
-          </button>
+
           <button
             className="button"
             id="like-button"
             onClick={() => props.onLikeClick(props.post_id)}
           >
             &#129293;
+            {props.likes}
+            
           </button>
           <button
             className="button"

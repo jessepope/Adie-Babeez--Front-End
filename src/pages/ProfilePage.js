@@ -281,8 +281,9 @@ const ProfilePage = (props) => {
     </form>;
 
   return (
-    <div id="profile-page">
+      <div className="profile-page">
       <NavBar />
+    
       <div className="profile-container">
         <div id="profile">
           {editProfileStatus ? profileEditForm : profileInfo}

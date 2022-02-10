@@ -73,10 +73,11 @@ function SignUpForm(props) {
           // create user in chat engine API
           console.log("api response", response.data);
           myContext.setCurrentUser(response.data);
-          console.log("myContext-currentUser", myContext.currentUser);
+          console.log("myContext-currentUser", myContext.userVariable); // undefined
           const user_id = myContext.userVariable.user_id;
-          console.log("user_id", user_id);
+          console.log("user_id", user_id); // undefined
           console.log("successfully created user in AB_DB");
+
           axios
             .post("https://api.chatengine.io/users/", data, config)
             .then((response) => {

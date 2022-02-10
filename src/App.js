@@ -44,10 +44,12 @@ function App() {
                 path="/newpost"
                 element={<NewPostPage />}
               />
+              
               <Route
                 path={"/profile/:id"}
                 element={<ProfilePage />}
               />
+           
               <Route
                 path={"/inbox/:id"}
                 element={<InboxPage />}
