@@ -26,8 +26,7 @@ const Post = (props) => {
           className="button"
           id="delete-post-button"
           onClick={() => props.onDeleteClick(props)}
-        >
-        </button>
+        ></button>
       );
     }
     return deleteButton;
@@ -56,7 +55,7 @@ const Post = (props) => {
     if (comments) {
       const commentComponents = comments.map((comment) => {
         return (
-          <Comment 
+          <Comment
             text={comment.text}
             key={comment.comment_id}
             username={comment.username}
@@ -75,14 +74,20 @@ const Post = (props) => {
   const submitCommentForm = () => {
     setShowCommentForm(true);
   };
-  
+
   const onCancel = (e) => {
     setShowCommentForm(false);
   };
 
   let commentForm = null;
   if (showCommentForm === true) {
-    commentForm = <CommentForm comments={comments} setComments={setComments()} post_id={props.post_id} onCancel={onCancel} setShowCommentForm={setShowCommentForm}/>;
+    commentForm = (
+      <CommentForm
+        post_id={props.post_id}
+        onCancel={onCancel}
+        setShowCommentForm={setShowCommentForm}
+      />
+    );
   }
 
   return (
@@ -99,21 +104,21 @@ const Post = (props) => {
           <div className="post-title">{props.title}</div>
           <div className="post-text">{props.text}</div>
           <div id="post-buttons">
-            <div id="likes-count">
-            {props.likes}
-            </div>
+            <div id="likes-count">{props.likes}</div>
             <button
               className="button"
               id="like-button"
               onClick={() => props.onLikeClick(props.post_id)}
-            >&#129293;
+            >
+              &#129293;
             </button>
             <button
               className="button"
               id="comment-button"
               post_id={props.post_id}
               onClick={submitCommentForm}
-            >&#128172;
+            >
+              &#128172;
             </button>
             {checkUser(props)}
           </div>

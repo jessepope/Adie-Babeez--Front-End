@@ -37,15 +37,7 @@ const CommentForm = (props) => {
       requestBody["post_id"] = props.post_id;
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/comments/newcomment`, [requestBody])
-        .then((response) => {
-          props.setShowCommentForm(false);
-          let newComments = []
-          props.comments.forEach((comment) => {
-              newComments.push(comment);
-            })
-          newComments.push(response.data)
-          console.log('new comments', newComments)
-          props.setComments(newComments)
+        .then(() => {
           })
         .catch((err) => {
           console.log(err);

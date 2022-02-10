@@ -252,7 +252,7 @@ const ProfilePage = (props) => {
           id="pronouns"
           maxLength={50}
           name="pronouns"
-          value={formField.pronouns ? formField.pronouns : ""}
+          value={formField.pronouns}
           placeholder={userInfo.pronouns ? userInfo.pronouns : "pronouns"}
           onChange={onFieldChange}
         ></input>
@@ -263,7 +263,7 @@ const ProfilePage = (props) => {
           id="location"
           maxLength={50}
           name="location"
-          value={formField.location ? formField.location : ""}
+          value={formField.location}
           placeholder={userInfo.location ? userInfo.location : "location"}
           onChange={onFieldChange}
         ></input>
@@ -274,7 +274,7 @@ const ProfilePage = (props) => {
           id="className"
           maxLength={50}
           name="className"
-          value={formField.class_name ? formField.class_name : ""}
+          value={formField.class_name}
           placeholder={userInfo.class_name ? userInfo.class_name : "class name"}
           onChange={onFieldChange}
         ></input>
@@ -285,7 +285,7 @@ const ProfilePage = (props) => {
           id="campus"
           maxLength={50}
           name="campus"
-          value={formField.campus ? formField.campus : ""}
+          value={formField.campus}
           placeholder={userInfo.campus ? userInfo.campus : "campus"}
           onChange={onFieldChange}
         ></input>
@@ -296,7 +296,7 @@ const ProfilePage = (props) => {
           id="bio"
           maxLength={50}
           name="bio"
-          value={formField.bio ? formField.bio : ""}
+          value={formField.bio}
           placeholder={userInfo.bio ? userInfo.bio : "bio"}
           onChange={onFieldChange}
         ></input>
