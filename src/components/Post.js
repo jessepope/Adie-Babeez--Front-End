@@ -86,6 +86,8 @@ const Post = (props) => {
         post_id={props.post_id}
         onCancel={onCancel}
         setShowCommentForm={setShowCommentForm}
+        comments={comments}
+        setComments={setComments}
       />
     );
   }
