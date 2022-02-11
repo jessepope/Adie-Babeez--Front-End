@@ -31,7 +31,7 @@ const ProfilePage = (props) => {
     campus: userInfo.campus,
     bio: userInfo.bio,
   });
-
+  console.log('formFields', formField)
   console.log("self", userSelf);
   // Initial Render
   useEffect(() => {
@@ -200,7 +200,7 @@ const ProfilePage = (props) => {
       {deleteMessage ? deleteMessage : profileButtons}
     </div>
   );
-
+  console.log('formFields', formField)
   const profileEditForm = (
     <form id="edit-profile-form" onSubmit={editProfileSubmit}>
       <div className="error-message-container">
