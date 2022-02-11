@@ -12,13 +12,12 @@
     background-color:rgb(252, 179, 70,0.8);
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 15%;
     box-sizing: border-box;
     box-shadow: 5px 10px;
     align-items: center;
     width:max-content;
     padding: 20px;
-    
 }
 
 input{

@@ -3,5 +3,10 @@
     background-image:url(../images/stars.jpeg);
     background-size:cover;
     background-position: 0%;
+    
+}
+
+#new-post-form-container {
+    margin-top: 15%;
 }
 

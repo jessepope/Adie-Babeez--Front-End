@@ -7,7 +7,9 @@ const NewPostPage = (props) => {
   return (
     <div className="new-post-page">
       <NavBar />
+      <div id="new-post-form-container">
       <NewPostForm />
+      </div>
       <FooterEachPage />
     </div>
   );

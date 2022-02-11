@@ -31,7 +31,7 @@ const ProfilePage = (props) => {
     campus: userInfo.campus,
     bio: userInfo.bio,
   });
-  console.log('formFields', formField)
+  console.log("formFields", formField);
   console.log("self", userSelf);
   // Initial Render
   useEffect(() => {
@@ -181,8 +181,11 @@ const ProfilePage = (props) => {
     <div id="profile-display">
       <div id="profile-info">
         <p id="user-email">username: {userInfo.username}</p>
-        <p id="user-name">email: {userInfo.email}</p>
+        {userInfo.pronouns ? (
+          <p id="user-pronouns">pronouns: {userInfo.pronouns}</p>
+        ) : null}
         {userInfo.bio ? <p id="user-bio">bio: {userInfo.bio}</p> : null}
+        <p id="user-name">email: {userInfo.email}</p>
         {userInfo.posts ? <p id="user-posts">posts: {userInfo.posts}</p> : null}
         {userInfo.campus ? (
           <p id="user-campus">campus: {userInfo.campus}</p>
@@ -193,14 +196,11 @@ const ProfilePage = (props) => {
         {userInfo.class_name ? (
           <p id="user-class-name">class name: {userInfo.class_name}</p>
         ) : null}
-        {userInfo.pronouns ? (
-          <p id="user-pronouns">pronouns: {userInfo.pronouns}</p>
-        ) : null}
       </div>
       {deleteMessage ? deleteMessage : profileButtons}
     </div>
   );
-  console.log('formFields', formField)
+  console.log("formFields", formField);
   const profileEditForm = (
     <form id="edit-profile-form" onSubmit={editProfileSubmit}>
       <div className="error-message-container">
