@@ -8,7 +8,6 @@ import SignUpPage from "./pages/SignUpPage";
 import NewPostPage from "./pages/NewPostPage";
 import ProfilePage from "./pages/ProfilePage";
 import AppContext from "./AppContext";
-import { ChatEngine } from "react-chat-engine";
 import InboxPage from "./pages/InboxPage";
 
 function App() {
