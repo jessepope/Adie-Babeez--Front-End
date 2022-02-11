@@ -3,12 +3,14 @@ import NavBar from "../components/NavBar";
 import AppContext from "../AppContext";
 import FooterEachPage from "../components/FooterEachPage";
 import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ProfilePage = (props) => {
   // STATE VARIABLES
   const myContext = useContext(AppContext);
+  // const userInfo = myContext.userVariable;
   const userId = myContext.userVariable.user_id;
   const chatId = myContext.userVariable.user_id_chatengine;
   const [userInfo, setUserInfo] = useState({});
@@ -21,18 +23,7 @@ const ProfilePage = (props) => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [deleteMessage, setDeleteMessage] = useState(null);
   const [editProfileStatus, setEditProfileStatus] = useState(false);
-  const [formField, setFormField] = useState({
-    username: userInfo.username,
-    email: userInfo.email,
-    password: userInfo.password,
-    pronouns: userInfo.pronouns,
-    location: userInfo.location,
-    class_name: userInfo.class_name,
-    campus: userInfo.campus,
-    bio: userInfo.bio,
-  });
-  console.log("formFields", formField);
-  console.log("self", userSelf);
+
   // Initial Render
   useEffect(() => {
     axios
@@ -47,6 +38,22 @@ const ProfilePage = (props) => {
         console.log(err);
       });
   }, []);
+
+  const currentUserValues = {
+    username: userInfo.username,
+    email: userInfo.email,
+    password: userInfo.password,
+    pronouns: userInfo.pronouns ? userInfo.pronouns : "",
+    location: userInfo.location ? userInfo.location : "",
+    class_name: userInfo.class_name ? userInfo.class_name : "",
+    campus: userInfo.campus ? userInfo.campus : "",
+    bio: userInfo.bio ? userInfo.bio : "",
+  };
+  console.log("user values", currentUserValues);
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: currentUserValues,
+  });
 
   // CHAT ENGINE API
   let env_key = process.env.REACT_APP_CHAT_ENGINE_KEY;
@@ -104,12 +111,12 @@ const ProfilePage = (props) => {
   };
 
   // EDIT PROFILE
-  const onFieldChange = (e) => {
-    setFormField({
-      ...formField,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const onFieldChange = (e) => {
+  //   setCurrentUserValues({
+  //     ...currentUserValues,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   const editProfile = () => {
     setEditProfileStatus(true);
@@ -128,17 +135,17 @@ const ProfilePage = (props) => {
 
     let validData = true;
 
-    if (formField.username.length === 0) {
+    if (currentUserValues.username.length === 0) {
       username.style.borderColor = "red";
       setShowErrorMessage(true);
       validData = false;
     }
-    if (formField.password.length === 0) {
+    if (currentUserValues.password.length === 0) {
       password.style.borderColor = "red";
       setShowErrorMessage(true);
       validData = false;
     }
-    if (formField.email.length === 0) {
+    if (currentUserValues.email.length === 0) {
       email.style.borderColor = "red";
       setShowErrorMessage(true);
       validData = false;
@@ -146,7 +153,7 @@ const ProfilePage = (props) => {
     if (validData === true) {
       axios
         .put(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${userId}`, [
-          formField,
+          currentUserValues,
         ])
         .then(() => {
           axios
@@ -155,13 +162,15 @@ const ProfilePage = (props) => {
             .catch((err) => {
               console.log("Chat Engine user not updated", err);
             });
-          navigate(`/"/profile/${userId}"`);
+          navigate(`/profile/${userId}`);
         })
         .catch((err) => {
           console.log(err);
         });
     }
   };
+
+  // PROFILE DISPLAY
   const profileButtons = (
     <div id="profile-buttons">
       {userSelf ? (
@@ -200,9 +209,9 @@ const ProfilePage = (props) => {
       {deleteMessage ? deleteMessage : profileButtons}
     </div>
   );
-  console.log("formFields", formField);
+
   const profileEditForm = (
-    <form id="edit-profile-form" onSubmit={editProfileSubmit}>
+    <form id="edit-profile-form" onSubmit={handleSubmit(editProfileSubmit)}>
       <div className="error-message-container">
         {showErrorMessage ? (
           <p className="error-message">
@@ -217,9 +226,10 @@ const ProfilePage = (props) => {
           minLength={1}
           maxLength={80}
           name="username"
-          value={formField.username}
-          placeholder={userInfo.username}
-          onChange={onFieldChange}
+          {...register("username", { required: true })}
+          // value={formField.username}
+          // placeholder={userInfo.username}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -229,9 +239,10 @@ const ProfilePage = (props) => {
           minLength={1}
           maxLength={80}
           name="email"
-          value={formField.email}
-          placeholder={userInfo.email}
-          onChange={onFieldChange}
+          {...register("email", { required: true })}
+          // value={formField.email}
+          // placeholder={userInfo.email}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -241,9 +252,10 @@ const ProfilePage = (props) => {
           minLength={1}
           maxLength={50}
           name="password"
-          value={formField.password}
-          placeholder="password"
-          onChange={onFieldChange}
+          {...register("password", { required: true })}
+          // value={formField.password}
+          // placeholder="password"
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -252,9 +264,10 @@ const ProfilePage = (props) => {
           id="pronouns"
           maxLength={50}
           name="pronouns"
-          value={formField.pronouns}
-          placeholder={userInfo.pronouns ? userInfo.pronouns : "pronouns"}
-          onChange={onFieldChange}
+          {...register("pronouns", { required: false })}
+          // value={formField.pronouns}
+          // placeholder={userInfo.pronouns ? userInfo.pronouns : "pronouns"}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -263,9 +276,10 @@ const ProfilePage = (props) => {
           id="location"
           maxLength={50}
           name="location"
-          value={formField.location}
-          placeholder={userInfo.location ? userInfo.location : "location"}
-          onChange={onFieldChange}
+          {...register("location", { required: false })}
+          // value={formField.location}
+          // placeholder={userInfo.location ? userInfo.location : "location"}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -274,9 +288,10 @@ const ProfilePage = (props) => {
           id="className"
           maxLength={50}
           name="className"
-          value={formField.class_name}
-          placeholder={userInfo.class_name ? userInfo.class_name : "class name"}
-          onChange={onFieldChange}
+          {...register("className", { required: false })}
+          // value={formField.class_name}
+          // placeholder={userInfo.class_name ? userInfo.class_name : "class name"}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -285,9 +300,10 @@ const ProfilePage = (props) => {
           id="campus"
           maxLength={50}
           name="campus"
-          value={formField.campus}
-          placeholder={userInfo.campus ? userInfo.campus : "campus"}
-          onChange={onFieldChange}
+          {...register("campus", { required: false })}
+          // value={formField.campus}
+          // placeholder={userInfo.campus ? userInfo.campus : "campus"}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div className="edit-form-field">
@@ -296,9 +312,10 @@ const ProfilePage = (props) => {
           id="bio"
           maxLength={50}
           name="bio"
-          value={formField.bio}
-          placeholder={userInfo.bio ? userInfo.bio : "bio"}
-          onChange={onFieldChange}
+          {...register("bio", { required: false })}
+          // value={formField.bio}
+          // placeholder={userInfo.bio ? userInfo.bio : "bio"}
+          // onChange={onFieldChange}
         ></input>
       </div>
       <div id="edit-form-buttons">
