@@ -1,3 +1,7 @@
 .new-post-page {
     height: 100vh;
+    background-image:url(../images/stars.jpeg);
+    background-size:cover;
+    background-position: 0%;
 }
+
