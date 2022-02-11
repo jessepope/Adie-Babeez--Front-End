@@ -5,6 +5,9 @@
     background-position: 0%;
     
 }
+.profile{
+    padding:20px;
+}
 .profile-container{
     background-color:rgb(252, 179, 70,0.8);
     margin-left: auto;
@@ -12,7 +15,16 @@
     margin-top: 20px;
     box-sizing: border-box;
     box-shadow: 5px 10px;
-    width: 400px;
+    align-items: center;
+    width:max-content;
+    padding: 20px;
+    
+}
+
+input{
+    height:2em;
+    width: 20em;
+    font-size:18px;
 }
 
 #profile-display {
@@ -21,7 +33,9 @@
 }
 
 #profile-info p {
-    margin-left: 15px;
+    max-width: max-content;
+    padding-left: 40px;
+    padding-right:40px;
 }
 
 #profile-buttons {
