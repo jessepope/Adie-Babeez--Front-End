@@ -13,6 +13,7 @@ const InboxPage = () => {
   const userPassword = myContext.userVariable.password;
   console.log("username", currUsername, "password", userPassword);
 
+
   function createDirectChat(creds) {
     getOrCreateChat(
       creds,
