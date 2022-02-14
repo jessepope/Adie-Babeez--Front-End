@@ -47,7 +47,7 @@ function LoginForm(props) {
     if (validEmail === true && validPassword === true) {
       console.log(formField);
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
+        .post(`${REACT_APP_BACKEND_URL}/login`, [formField])
         .then((response) => {
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
