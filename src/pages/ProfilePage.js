@@ -11,7 +11,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const ProfilePage = (props) => {
   // STATE VARIABLES
   const myContext = useContext(AppContext);
-  // const userInfo = myContext.userVariable;
   const userId = myContext.userVariable.user_id;
   const [userInfo, setUserInfo] = useState({});
   const { register, handleSubmit, reset } = useForm({
@@ -22,25 +21,19 @@ const ProfilePage = (props) => {
 
   // check if current user is self
   const { user } = location.state;
-  console.log("user", user);
-  console.log("userId", userId);
   const [userSelf, setUserSelf] = useState(false);
 
   // form error message rendering
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [deleteMessage, setDeleteMessage] = useState(null);
   const [editProfileStatus, setEditProfileStatus] = useState(false);
-  const [profilePosts, setProfilePosts] = useState([]);
-  const [profilePostComponents, setProfilePostComponents] = useState([]);
 
   // Initial Render
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${user}`)
       .then((response) => {
-        console.log("response", response.data);
         setUserInfo(response.data);
-        setProfilePosts(response.data.posts);
         if (userId === parseInt(user)) {
           setUserSelf(true);
         }
@@ -136,7 +129,8 @@ const ProfilePage = (props) => {
         .put(`${process.env.REACT_APP_BACKEND_URL}/users/profile/${userId}`, [
           userInfo,
         ])
-        .then(() => {
+        .then((response) => {
+          myContext.setCurrentUser(response.data);
           setEditProfileStatus(false);
           navigate(`/profile/${userId}`, {
             replace: true,
@@ -164,28 +158,7 @@ const ProfilePage = (props) => {
     </div>
   );
 
-  useEffect(() => {
-    if (profilePosts) {
-      const postComponents = profilePosts.map((post) => {
-        return (
-          <Post
-            key={post.post_id}
-            user_id={post.user_id}
-            title={post.title}
-            text={post.text}
-            post_id={post.post_id}
-            username={post.username}
-            likes={post.likes}
-            comments={post.comments}
-          />
-        );
-      });
-      setProfilePostComponents(postComponents);
-    }
-  }, [profilePosts]);
-
   const profileInfo = (
-    // <div id="profile-info">
     <div id="profile-display">
       <div id="profile-info">
         <p id="user-email">username: {userInfo.username}</p>
@@ -204,13 +177,9 @@ const ProfilePage = (props) => {
         {userInfo.class_name ? (
           <p id="user-class-name">class name: {userInfo.class_name}</p>
         ) : null}
-        {profilePostComponents ? profilePostComponents : null}
       </div>
       {deleteMessage ? deleteMessage : profileButtons}
     </div>
-    /* <div id="profile-post-display"> */
-    /* </div> */
-    // </div>
   );
 
   const profileEditForm = (
@@ -328,6 +297,7 @@ const ProfilePage = (props) => {
     </form>
   );
 
+  // COMPONENT RENDER
   return (
     <div className="profile-page">
       <NavBar />

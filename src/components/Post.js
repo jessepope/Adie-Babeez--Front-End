@@ -92,6 +92,7 @@ const Post = (props) => {
     );
   }
 
+  // COMPONENT RENDER
   return (
     <div>
       <div className="post-border">
@@ -112,7 +113,7 @@ const Post = (props) => {
               id="like-button"
               onClick={() => props.onLikeClick(props.post_id)}
             >
-              &#129293;
+              💟
             </button>
             <button
               className="button"

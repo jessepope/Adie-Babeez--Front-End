@@ -55,6 +55,7 @@ function NewPostForm(props) {
     }
   };
 
+  // COMPONENT RENDER
   return (
     <div>
       <form className="new-post-form" onSubmit={onNewPostFormSubmit}>

@@ -6,6 +6,7 @@ import AppContext from "../AppContext";
 
 function SignUpForm(props) {
   let navigate = useNavigate();
+
   // STATE VARIABLES
   const myContext = useContext(AppContext);
   console.log("myContext", myContext);
@@ -69,6 +70,7 @@ function SignUpForm(props) {
     }
   };
 
+  // COMPONENT RENDER
   return (
     <form className="sign-up-form" onSubmit={onSignUpFormSubmit}>
       <div className="left-half">

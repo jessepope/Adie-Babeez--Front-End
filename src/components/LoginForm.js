@@ -7,11 +7,19 @@ import AppContext from "../AppContext";
 function LoginForm(props) {
   const [formField, setFormField] = useState({ email: "", password: "" });
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showFailedLogin, setShowFailedLogin] = useState(false);
 
   let navigate = useNavigate();
   const myContext = useContext(AppContext);
 
   const onFieldChange = (e) => {
+    // remove error messages while typing after failed login
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    email.style.borderColor = "black";
+    password.style.borderColor = "black";
+    setShowErrorMessage(false);
+    setShowFailedLogin(false);
     setFormField({
       ...formField,
       [e.target.name]: e.target.value,
@@ -45,8 +53,9 @@ function LoginForm(props) {
           navigate(`/feed`);
         })
         .catch((err) => {
-          console.log(err);
-          // if 404, show error message "incorrect email or password"
+          if (err.response.status === 400) {
+            setShowFailedLogin(true);
+          }
         });
     }
   };
@@ -55,10 +64,14 @@ function LoginForm(props) {
     navigate(`/signup`);
   };
 
+  // COMPONENT RENDER
   return (
     <form className="login-form" onSubmit={onLoginFormSubmit}>
       <div className="error-message-container">
         {showErrorMessage ? (
+          <p className="error-message"> Email and Password Required </p>
+        ) : null}
+        {showFailedLogin ? (
           <p className="error-message"> Incorrect Email and/or Password </p>
         ) : null}
       </div>

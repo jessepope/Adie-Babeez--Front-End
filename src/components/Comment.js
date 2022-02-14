@@ -24,7 +24,7 @@ const Comment = (props) => {
     }
     return deleteButton;
   };
-  
+  // COMPONENT RENDER
   return (
     <div className="comment">
       <div className="comment-user">

@@ -19,10 +19,7 @@ const Feed = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/posts/all`)
       .then((response) => {
-        // console.log("response", response.data);
         setPosts(response.data);
-        // console.log("posts", posts);
-        // console.log("components", postComponents);
       });
   }, []);
 
@@ -84,6 +81,7 @@ const Feed = () => {
     }
   }, [posts]);
 
+  // COMPONENT RENDER
   return (
     <div className="feed-container">
       {postComponents ? postComponents : null}
