@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Adie-Babeez 
+Adie-Babeez was created as part of Ada Developers Academy Cohort 16 Capstone project. It's purpose is to connect student parents at Ada Developers Academy. Students can sign up for our site and access a social feed and direct messaging as means to connect with, and share resources between, student parents at Ada. We chose to build this app because we saw a need for additional support services for students in our cohort who were balancing parenting and/or care giving while also completing the program. We believe that connecting students who share similar experiences and needs would increase community support for these students. 
+
+This app is integrated with a Flask API and React Chat Engine API. The user is able to create an account through Adie-Babeez and also be signed up for an account through Chat Engine, which enables direct messaging between users within the Adie-Babeez platform. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Demo
 
-In the project directory, you can run:
+Embed Demo video here
 
-### `npm start`
+## Features
++ Login/Sign-up
++ Social Feed
++ Create New Post
++ Like/Comment/Delete Post
++ My Profile/Users Profile
++ Edit/Delete My Profile
++ Inbox with Direct Messaging
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Dependencies 
+Adie-Babeez relies on:
+- Python/Flask API
+- React Chat Engine API
+- React Router Dom
+- React Hook Form
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Adie-Babeez is deployed on Heroku:
+Front-end:
+Back-end:
 
-### `npm run build` fails to minify
+### Capstone Team
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This capstone project was a team effort. Our team includes Andrea Yuson, Elly Wong, and Jesse Pope.
