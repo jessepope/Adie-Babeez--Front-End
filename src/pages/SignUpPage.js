@@ -1,5 +1,6 @@
 import SignUpForm from "../components/SignUpForm";
 import "./SignUpPage.css";
+import FooterEachPage from "../components/FooterEachPage"
 
 const SignUpPage = (props) => {
   return (

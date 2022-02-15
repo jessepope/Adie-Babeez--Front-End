@@ -14,16 +14,14 @@
     margin-top: 0px;
 }
 
-.login-page {
-    /* height: 100vh; */
-    background-image: url(../images/bg.png) ;
-    background-repeat: no-repeat;
-    background-size: cover;
+.login-form-container {
+    align-items: center;
 }
 
-.login-form-container {
+.login-page {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-content: center;
+    background-image: url(../images/bg.png) ;
+    background-size:cover;
 }

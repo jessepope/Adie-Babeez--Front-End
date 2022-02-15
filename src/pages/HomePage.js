@@ -12,7 +12,10 @@ const HomePage = () => {
     <div className="home-page">
       <NavBar />
       <Feed />
-      <FooterEachPage />
+      <div className="footer">
+        <FooterEachPage />
+      </div>
+      
     </div>
   );
 };

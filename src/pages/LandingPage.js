@@ -1,5 +1,6 @@
-import LoginForm from '../components/LoginForm'
-import './LandingPage.css'
+import LoginForm from '../components/LoginForm';
+import FooterEachPage from '../components/FooterEachPage';
+import './LandingPage.css';
 
 const LandingPage = (props) => {
 
@@ -10,6 +11,9 @@ const LandingPage = (props) => {
                 <h2 className="slogan">("A-dee-bay-beez")</h2>
                 <h3 className="slogan">Connecting Adie Parents for all their parenting needs</h3>
                 <LoginForm />
+            </div>
+            <div className = "footer">
+                <FooterEachPage />
             </div>
         </div>
     );

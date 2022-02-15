@@ -10,7 +10,9 @@ const NewPostPage = (props) => {
       <div id="new-post-form-container">
       <NewPostForm />
       </div>
-      <FooterEachPage />
+      <div className="footer">
+        <FooterEachPage />
+      </div>
     </div>
   );
 };

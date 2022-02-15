@@ -1,11 +1,5 @@
 .feed-container{
     display: flex;
     flex-direction: column;
-    /* changed this css for responsiveness, specific styles have to be added for each
-    viewport size if we do not use a responsive style */
-    /* margin-left:525px;
-    margin-right:500px; */
-    /* padding-top:0%;
-    padding-bottom:0%; */
     align-items: center;
 }

@@ -21,9 +21,10 @@
     box-sizing: border-box; 
     overflow-y: auto; 
   }
-  input{
+
+  /* input{
       margin:10px;
-  }
+  } */
 
   .sign-up-title {
       color:white;
@@ -38,6 +39,7 @@
     font-size: 20px;
     font-weight: bold;
   }
+  
 .sign-up-inputs {
   display: flex;
   flex-direction: column;

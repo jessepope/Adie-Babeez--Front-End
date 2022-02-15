@@ -1,18 +1,36 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background-color: #F2E7C4;
 }
 
-body{
-  background-color: #F2E7C4 ;
-}
 .error-message  {
   color: red;
 }
+
 .button {
+  display: flex;
   background-color: rgb(97, 198, 172);
+  align-items: center;
+  margin: 2px;
 }
+
 .button:hover {
   background-color: white;
   transform: scale(1.15);
+}
+
+input {
+  height:2em;
+  width: 20em;
+  font-size:18px;
+}
+
+.footer {
+    color: whitesmoke;
+    font-weight: bolder;
+    background-color: rgb(97, 198, 172);
+    text-align: right;
+    position: fixed;
+    left:0;
+    bottom:0;
+    right:0;
 }

@@ -2,12 +2,8 @@
     height: 100vh;
     background-image:url(../images/hpf.png);
     background-size:cover;
-    background-position: 0%;
-    
 }
-.profile{
-    padding:20px;
-}
+
 .profile-container{
     background-color:rgb(252, 179, 70,0.8);
     margin-left: auto;
@@ -20,17 +16,6 @@
     padding: 20px;
 }
 
-input{
-    height:2em;
-    width: 20em;
-    font-size:18px;
-}
-
-/* #profile-display {
-    display: flex;
-    flex-direction:row;
-} */
-
 #profile-info p {
     max-width: max-content;
     padding-left: 40px;
@@ -40,6 +25,14 @@ input{
 #profile-buttons {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+#delete-profile-buttons, #edit-form-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: auto;
 }
 
@@ -52,22 +45,9 @@ input{
 #edit-profile-form {
     display: flex;
     flex-direction: column;
-    /* aligning input boxes to the right */
 }
 
-#edit-form-buttons {
+/* #edit-form-buttons {
     display: block;
     margin: auto;
-}
-
-/* #profile-post-display {
-    background-color:rgb(252, 179, 70,0.8);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15%;
-    box-sizing: border-box;
-    box-shadow: 5px 10px;
-    align-items: center;
-    width:max-content;
-    padding: 20px;
 } */

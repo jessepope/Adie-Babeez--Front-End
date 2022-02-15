@@ -2,7 +2,6 @@ import "./ProfilePage.css";
 import NavBar from "../components/NavBar";
 import AppContext from "../AppContext";
 import FooterEachPage from "../components/FooterEachPage";
-import Post from "../components/Post";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -64,16 +63,13 @@ const ProfilePage = (props) => {
     setDeleteMessage(
       <div id="delete-profile-message">
         <p className="error-message">
-          {" "}
           Are you sure you want to delete your profile?{" "}
         </p>
-        <div>
+        <div id="delete-profile-buttons">
           <button className="button" onClick={confirmDeleteFunc}>
-            {" "}
             Yes
           </button>
           <button className="button" onClick={cancelDelete}>
-            {" "}
             Cancel
           </button>
         </div>
@@ -306,7 +302,9 @@ const ProfilePage = (props) => {
           {editProfileStatus ? profileEditForm : profileInfo}
         </div>
       </div>
-      <FooterEachPage />
+      <div className="footer">
+        <FooterEachPage />
+      </div>
     </div>
   );
 };
