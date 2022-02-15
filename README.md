@@ -21,8 +21,8 @@ Embed Demo video here
 ## Deployment
 
 Adie-Babeez is deployed on Heroku:
-Front-end:
-Back-end:
+<br />Front-end: https://adiebabeez.herokuapp.com/
+<br />Back-end (database): https://adie-babeez.herokuapp.com/users/all
 
 ## Capstone Team
 
