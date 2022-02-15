@@ -48,6 +48,7 @@ function LoginForm(props) {
       console.log(formField);
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/login`, [formField])
+
         .then((response) => {
           myContext.setCurrentUser(response.data);
           navigate(`/feed`);
@@ -57,6 +58,7 @@ function LoginForm(props) {
             setShowFailedLogin(true);
           }
         });
+        console.log(formField)
     }
   };
 
