@@ -43,7 +43,8 @@ Adie-Babeez relies on:
 - SQLAlchemy
 - gunicorn
 
-##Reflection
+
+## Reflection
 **Overview** <br />
 This was a three week capstone project to complete the classroom portion of Ada Developers Academy. Project goals included using technologies and skills that we had learned during the classroom portion, as well as seeking to utilize new documentation and technologies. 
 
