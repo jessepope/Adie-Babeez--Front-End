@@ -9,7 +9,7 @@ This app is integrated with a Flask API and React Chat Engine API. The user is a
 
 https://user-images.githubusercontent.com/80115467/154557085-108f0994-1afe-493a-b3a4-7081cca315f8.mov
 
-
+demo video with captions available on youtube: https://www.youtube.com/watch?v=IAFPtP_B3s4
 
 ## Features
 + Login/Sign-up
