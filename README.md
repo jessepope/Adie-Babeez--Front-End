@@ -21,6 +21,9 @@ Embed Demo video here
 Adie-Babeez is deployed on Heroku:
 <br />Front-end: https://adiebabeez.herokuapp.com/
 <br />Back-end (database): https://adie-babeez.herokuapp.com/users/all
+<br />
+<br />
+Back-end Repo: https://github.com/jessepope/Adie-Babeez--Back-End
 
 ## Capstone Team
 
@@ -63,7 +66,10 @@ We ran into some challenges with implementing new libraries in react (such as re
 
 We also ran into some challenges with integrating a third-party external API (react chat engine). The documentation for this API is limited, and it was difficult to find exmaples that were up to date with the current version of react and react router that we were using. We did quite a bit of trouble shooting, trial and error, and console-logging to solve the issues with the external API. We were able to integrate it in our sign up, eidt user, and inbox features. 
 
-**Learning**<br />
+**Learning Reflections**<br />
+**Why was this project challenging and therefore a really good learning experience?**
++ Getting better at unblocking yourself by searching for resources and being able to get through git merge conflicts with the help of my group  which will make my anxiety towards git a little better for future use!
++ This is challenging because this is my first full stack project using some tech stacks which I am not familiar with and this also really relied on the communications with team members to make our work come true and successful.
 
 **Ideas for Extensions and Refactoring**<br />
 We wanted to collect the ideas that we have for refactoring and extensions that we were not able to get to within the time constraints of our capstone project.
