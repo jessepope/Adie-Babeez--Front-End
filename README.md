@@ -5,7 +5,11 @@ This app is integrated with a Flask API and React Chat Engine API. The user is a
 
 ## Demo
 
-Embed Demo video here
+
+
+https://user-images.githubusercontent.com/80115467/154557085-108f0994-1afe-493a-b3a4-7081cca315f8.mov
+
+
 
 ## Features
 + Login/Sign-up
