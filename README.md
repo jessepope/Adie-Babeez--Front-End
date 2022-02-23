@@ -72,8 +72,9 @@ We also ran into some challenges with integrating a third-party external API (re
 
 **Learning Reflections**<br />
 **Why was this project challenging and therefore a really good learning experience?**
-+ Getting better at unblocking yourself by searching for resources and being able to get through git merge conflicts with the help of my group  which will make my anxiety towards git a little better for future use!
-+ This is challenging because this is my first full stack project using some tech stacks which I am not familiar with and this also really relied on the communications with team members to make our work come true and successful.
++ Andrea: Getting better at unblocking yourself by searching for resources and being able to get through git merge conflicts with the help of my group  which will make my anxiety towards git a little better for future use!
++ Elly: This is challenging because this is my first full stack project using some tech stacks which I am not familiar with and this also really relied on the communications with team members to make our work come true and successful.
++ Jesse: I appreciated the ways in which this project pushed me to challenge the assumptions that I had about what front-end development was like. I felt my precision and confidence with researching topics growing every time we worked on this project. I learned so much about react, and also that every new thing I learn opens up entire pockets of potential learning that I wasn't even aware of before!
 
 **Ideas for Extensions and Refactoring**<br />
 We wanted to collect the ideas that we have for refactoring and extensions that we were not able to get to within the time constraints of our capstone project.
